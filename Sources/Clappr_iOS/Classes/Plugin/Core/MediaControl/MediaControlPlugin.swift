@@ -25,4 +25,8 @@ open class MediaControlPlugin: UICorePlugin, MediaControlPluginType {
     open var position: MediaControlPosition {
         return .left
     }
+
+    open var hidesDuringSeek: Bool {
+        return false
+    }
 }

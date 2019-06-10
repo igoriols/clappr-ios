@@ -22,6 +22,10 @@ class MediaControlPluginTests: QuickSpec {
                 expect(mediaControlPlugin.view).to(beAKindOf(UIView.self))
                 expect(mediaControlPlugin.view).toNot(beNil())
             }
+
+            it("has a hidesDuringSeek property set to false as default") {
+                expect(mediaControlPlugin.hidesDuringSeek).to(beFalse())
+            }
         }
 
         describe("panel") {
