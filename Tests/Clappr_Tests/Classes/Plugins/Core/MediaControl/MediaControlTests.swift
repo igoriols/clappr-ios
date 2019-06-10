@@ -440,6 +440,15 @@ class MediaControlTests: QuickSpec {
 
                         expect(mediaControl).to(beAKindOf(MediaControl.self))
                     }
+
+                    it("has a list of hidable plugins") {
+                        let core = Core()
+
+                        core.addPlugin(FullscreenButton(context: core))
+
+                        let mediaControl = MediaControl(context: core)
+                        expect(mediaControl.hidablePlugins.first).to(beAKindOf(FullscreenButton.self))
+                    }
                 }
 
                 context("when kMediaControlPluginsOrder is passed") {

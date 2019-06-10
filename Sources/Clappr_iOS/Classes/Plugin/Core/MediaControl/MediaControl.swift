@@ -32,6 +32,11 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     private var currentlyShowing = false
     private var currentlyHiding = false
 
+    var hidablePlugins: [MediaControlPlugin] {
+        let mediaControlPlugins = core?.plugins.filter({ $0 is MediaControlPlugin }) as? [MediaControlPlugin] ?? []
+        return mediaControlPlugins.filter({ $0.hidesDuringSeek })
+    }
+
     required public init(context: UIObject) {
         super.init(context: context)
         alwaysVisible = (core?.options[kMediaControlAlwaysVisible] as? Bool) ?? false
@@ -209,7 +214,6 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         let orderedPlugins = sortPluginsIfNeeded(plugins)
         orderedPlugins.forEach { plugin in
             mediaControlView.addSubview(plugin.view, in: plugin.panel, at: plugin.position)
-
             do {
                 try ObjC.catchException {
                     plugin.render()
