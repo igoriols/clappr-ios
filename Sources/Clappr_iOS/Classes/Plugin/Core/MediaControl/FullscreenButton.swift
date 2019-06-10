@@ -16,6 +16,10 @@ open class FullscreenButton: MediaControlPlugin {
             view.addSubview(button)
         }
     }
+
+    open override var hidesDuringSeek: Bool {
+        return true
+    }
     
     open var isOnFullscreen = false {
         didSet {

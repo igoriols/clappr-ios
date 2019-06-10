@@ -32,6 +32,12 @@ class FullscreenButtonTests: QuickSpec {
                         expect(fullscreenButton.position).to(equal(MediaControlPosition.right))
                     }
                 }
+
+                describe("hidesDuringSeek") {
+                    it("is set to true as default") {
+                        expect(fullscreenButton.hidesDuringSeek).to(beTrue())
+                    }
+                }
                 
                 describe("#init") {
                     it("is an MediaControlPlugin type") {
