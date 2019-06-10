@@ -16,4 +16,6 @@ public class ClapprAnimationDuration {
     
     public static let mediaControlShow: TimeInterval = 0.3
     public static let mediaControlHide: TimeInterval = 0.3
+
+    public static let mediaControHidableInterval: TimeInterval = 3.0
 }

@@ -159,6 +159,31 @@ class MediaControlTests: QuickSpec {
                     }
                 }
 
+                context("when seeking") {
+                    it("hides the hidable plugins") {
+                        let core = CoreStub(options: [:])
+                        core.addPlugin(FullscreenButton(context: core))
+                        let mediaControl = MediaControl(context: core)
+
+                        core.trigger(InternalEvent.willBeginScrubbing.rawValue)
+
+                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(0))
+                    }
+                }
+
+                context("after seeking") {
+                    fit("shows the hidable plugins") {
+                        let core = CoreStub(options: [:])
+                        core.addPlugin(FullscreenButton(context: core))
+                        let mediaControl = MediaControl(context: core)
+                        (core.plugins.first as? MediaControlPlugin)?.view.alpha = 0
+
+                        core.trigger(InternalEvent.willBeginScrubbing.rawValue)
+
+                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(1), timeout: 4.0)
+                    }
+                }
+
                 context("when complete") {
                     it("hides the media control") {
                         mediaControlVisible()
