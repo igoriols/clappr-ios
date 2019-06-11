@@ -32,7 +32,7 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     private var currentlyShowing = false
     private var currentlyHiding = false
 
-    var hidablePlugins: [MediaControlPlugin] {
+    var hideablePlugins: [MediaControlPlugin] {
         let mediaControlPlugins = core?.plugins.filter({ $0 is MediaControlPlugin }) as? [MediaControlPlugin] ?? []
         return mediaControlPlugins.filter({ $0.hidesDuringSeek })
     }
@@ -116,13 +116,13 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
 
     public func dismissPlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
-        hidablePlugins.forEach {
+        hideablePlugins.forEach {
             $0.view.hide(with: duration)
         }
     }
 
     public func showPlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlShow) {
-        hidablePlugins.forEach {
+        hideablePlugins.forEach {
             $0.view.show(with: duration)
         }
     }

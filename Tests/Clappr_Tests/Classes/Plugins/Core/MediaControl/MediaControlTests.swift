@@ -167,7 +167,7 @@ class MediaControlTests: QuickSpec {
 
                         core.trigger(InternalEvent.willBeginScrubbing.rawValue)
 
-                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(0))
+                        expect(mediaControl.hideablePlugins.first?.view.alpha).toEventually(equal(0))
                     }
                 }
 
@@ -180,7 +180,7 @@ class MediaControlTests: QuickSpec {
 
                         core.trigger(InternalEvent.didFinishScrubbing.rawValue)
 
-                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(1))
+                        expect(mediaControl.hideablePlugins.first?.view.alpha).toEventually(equal(1))
                     }
                 }
 
@@ -472,7 +472,7 @@ class MediaControlTests: QuickSpec {
                         core.addPlugin(FullscreenButton(context: core))
 
                         let mediaControl = MediaControl(context: core)
-                        expect(mediaControl.hidablePlugins.first).to(beAKindOf(FullscreenButton.self))
+                        expect(mediaControl.hideablePlugins.first).to(beAKindOf(FullscreenButton.self))
                     }
                 }
 
