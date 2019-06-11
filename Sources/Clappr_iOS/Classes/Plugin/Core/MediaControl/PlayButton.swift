@@ -22,6 +22,10 @@ open class PlayButton: MediaControlPlugin {
         return core?.activePlayback
     }
 
+    open override var hidesDuringSeek: Bool {
+        return true
+    }
+
     public var button: UIButton! {
         didSet {
             view.addSubview(button)

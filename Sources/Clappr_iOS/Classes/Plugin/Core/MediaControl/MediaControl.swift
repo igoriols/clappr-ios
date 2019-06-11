@@ -73,6 +73,8 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
             }
 
             listenTo(core, eventName: InternalEvent.didFinishScrubbing.rawValue) { [weak self] _ in
+                self?.showHidabeablePlugins()
+                
                 guard self?.activePlayback?.state == .playing else { return }
                 self?.disappearAfterSomeTime()
             }
@@ -115,20 +117,24 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
 
     public func dismissHideablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
         hidablePlugins.forEach {
-            hideAndShow(plugin: $0, with: duration)
+            hide(plugin: $0, with: duration)
         }
     }
 
-    func hideAndShow(plugin: MediaControlPlugin, with duration: TimeInterval) {
+    public func showHidabeablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlShow) {
+        hidablePlugins.forEach {
+            show(plugin: $0, with: duration)
+        }
+    }
+
+    func hide(plugin: MediaControlPlugin, with duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
             plugin.view.alpha = 0
-        }) { [weak self] _ in
-            self?.showWithDelay(plugin: plugin)
-        }
+        })
     }
 
-    func showWithDelay(plugin: MediaControlPlugin, after delay: TimeInterval = ClapprAnimationDuration.mediaControHidableInterval) {
-        UIView.animate(withDuration: ClapprAnimationDuration.mediaControlShow, delay: delay, options: .curveLinear, animations: {
+    func show(plugin: MediaControlPlugin, with duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
             plugin.view.alpha = 1
         }, completion: nil)
     }

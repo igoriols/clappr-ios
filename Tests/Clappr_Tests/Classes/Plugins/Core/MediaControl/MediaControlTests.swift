@@ -172,15 +172,15 @@ class MediaControlTests: QuickSpec {
                 }
 
                 context("after seeking") {
-                    fit("shows the hidable plugins") {
+                    it("shows the hidable plugins") {
                         let core = CoreStub(options: [:])
                         core.addPlugin(FullscreenButton(context: core))
                         let mediaControl = MediaControl(context: core)
                         (core.plugins.first as? MediaControlPlugin)?.view.alpha = 0
 
-                        core.trigger(InternalEvent.willBeginScrubbing.rawValue)
+                        core.trigger(InternalEvent.didFinishScrubbing.rawValue)
 
-                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(1), timeout: 4.0)
+                        expect(mediaControl.hidablePlugins.first?.view.alpha).toEventually(equal(1))
                     }
                 }
 
