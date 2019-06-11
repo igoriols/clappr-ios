@@ -113,7 +113,7 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         }
     }
 
-    func dismissHideablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
+    public func dismissHideablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
         hidablePlugins.forEach {
             hideAndShow(plugin: $0, with: duration)
         }
