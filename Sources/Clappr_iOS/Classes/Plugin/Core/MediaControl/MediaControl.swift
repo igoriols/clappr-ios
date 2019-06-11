@@ -120,10 +120,11 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
 
     func hideAndShow(plugin: MediaControlPlugin, with duration: TimeInterval) {
-        UIView.animate(withDuration: duration) {
+        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
             plugin.view.alpha = 0
+        }) { [weak self] _ in
+            self?.showWithDelay(plugin: plugin)
         }
-        showWithDelay(plugin: plugin)
     }
 
     func showWithDelay(plugin: MediaControlPlugin, after delay: TimeInterval = ClapprAnimationDuration.mediaControHidableInterval) {
