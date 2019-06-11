@@ -76,4 +76,16 @@ extension UIView {
         layer.cornerRadius = radius
         clipsToBounds = true
     }
+
+    func hide(with duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
+            self.alpha = 0
+        }, completion: nil)
+    }
+
+    func show(with duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
+            self.alpha = 1
+        }, completion: nil)
+    }
 }

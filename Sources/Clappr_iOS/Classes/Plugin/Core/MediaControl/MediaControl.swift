@@ -69,12 +69,12 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
 
             listenTo(core, eventName: InternalEvent.willBeginScrubbing.rawValue) { [weak self] _ in
                 self?.keepVisible()
-                self?.dismissHideablePlugins()
+                self?.dismissPlugins()
             }
 
             listenTo(core, eventName: InternalEvent.didFinishScrubbing.rawValue) { [weak self] _ in
-                self?.showHidabeablePlugins()
-                
+                self?.showPlugins()
+
                 guard self?.activePlayback?.state == .playing else { return }
                 self?.disappearAfterSomeTime()
             }
@@ -115,28 +115,16 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         }
     }
 
-    public func dismissHideablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
+    public func dismissPlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
         hidablePlugins.forEach {
-            hide(plugin: $0, with: duration)
+            $0.view.hide(with: duration)
         }
     }
 
-    public func showHidabeablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlShow) {
+    public func showPlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlShow) {
         hidablePlugins.forEach {
-            show(plugin: $0, with: duration)
+            $0.view.show(with: duration)
         }
-    }
-
-    func hide(plugin: MediaControlPlugin, with duration: TimeInterval) {
-        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
-            plugin.view.alpha = 0
-        })
-    }
-
-    func show(plugin: MediaControlPlugin, with duration: TimeInterval) {
-        UIView.animate(withDuration: duration, delay: .zero, options: .curveLinear, animations: {
-            plugin.view.alpha = 1
-        }, completion: nil)
     }
 
     func show(animated: Bool = false, completion: (() -> Void)? = nil) {
