@@ -69,15 +69,12 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
 
             listenTo(core, eventName: InternalEvent.willBeginScrubbing.rawValue) { [weak self] _ in
                 self?.keepVisible()
+                self?.dismissHideablePlugins()
             }
 
             listenTo(core, eventName: InternalEvent.didFinishScrubbing.rawValue) { [weak self] _ in
                 guard self?.activePlayback?.state == .playing else { return }
-                self?.disappearAfterSomeTime()
-            }
-
-            listenTo(core, eventName: InternalEvent.willBeginScrubbing.rawValue) { [weak self] _ in
-                self?.hidablePlugins.forEach { self?.hide(plugin: $0) }
+                self?.dismissHideablePlugins()
             }
         }
     }
@@ -116,8 +113,14 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         }
     }
 
-    func hide(plugin: MediaControlPlugin) {
-        UIView.animate(withDuration: ClapprAnimationDuration.mediaControlHide) {
+    func dismissHideablePlugins(for duration: TimeInterval = ClapprAnimationDuration.mediaControlHide) {
+        hidablePlugins.forEach {
+            hideAndShow(plugin: $0, with: duration)
+        }
+    }
+
+    func hideAndShow(plugin: MediaControlPlugin, with duration: TimeInterval) {
+        UIView.animate(withDuration: duration) {
             plugin.view.alpha = 0
         }
         showWithDelay(plugin: plugin)
