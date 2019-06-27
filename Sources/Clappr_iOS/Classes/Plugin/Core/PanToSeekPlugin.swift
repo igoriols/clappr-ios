@@ -1,8 +1,10 @@
 import UIKit
 
-public class PanToSeekPlugin: SimpleCorePlugin {
+public class PanToSeekPlugin: UICorePlugin {
 
     var panGesture: UIPanGestureRecognizer!
+
+    var label: UILabel!
 
     open class override var name: String {
         return "PanToSeekPlugin"
@@ -19,6 +21,17 @@ public class PanToSeekPlugin: SimpleCorePlugin {
     required init(context: UIObject) {
         super.init(context: context)
         addGesture()
+        
+        label = UILabel()
+        view = label
+    }
+
+    override public func render() {
+        label.frame = coreView.bounds
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+
+        label.anchorInCenter()
     }
 
     public override func bindEvents() {
@@ -29,7 +42,7 @@ public class PanToSeekPlugin: SimpleCorePlugin {
 
     func addGesture() {
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(panSeek))
-        panGesture.minimumNumberOfTouches = 2
+        panGesture.minimumNumberOfTouches = 1
         coreView.addGestureRecognizer(panGesture)
     }
 
@@ -47,8 +60,31 @@ public class PanToSeekPlugin: SimpleCorePlugin {
         let pixelsPerSeconds = coreWidth / CGFloat(activePlayback.duration)
         let secondsToSeek = translation.x / pixelsPerSeconds
 
-        impactFeedback()
-        activePlayback.seek(TimeInterval(secondsToSeek) + (initialPosition ?? 0))
+        label.text = secondsToSeek > 0 ? "\(Int(secondsToSeek)) seconds \u{25BA}\u{25BA}" : "\u{25C4}\u{25C4} \(abs(Int(secondsToSeek))) seconds"
+
+        coreView.bringSubviewToFront(view)
+
+        control(state: recognizer.state, secondsToSeek: TimeInterval(secondsToSeek) + (initialPosition ?? 0))
+    }
+
+    private func control(state: UIPanGestureRecognizer.State, secondsToSeek: TimeInterval) {
+
+        switch state {
+        case .began, .changed:
+            hideLabel(false)
+        case .ended:
+            hideLabel(true)
+            impactFeedback()
+            core?.activePlayback?.seek(secondsToSeek)
+        default:
+            hideLabel(true)
+        }
+    }
+
+    private func hideLabel(_ hide: Bool) {
+        UIView.animate(withDuration: 0.5) {
+            self.label.isHidden = hide
+        }
     }
 
     private func impactFeedback() {
