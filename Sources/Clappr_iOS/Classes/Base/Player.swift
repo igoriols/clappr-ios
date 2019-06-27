@@ -203,7 +203,8 @@ open class Player: BaseObject {
                 Seekbar.self,
                 QuickSeekCorePlugin.self,
                 QuickSeekMediaControlPlugin.self,
-                PanToSeekPlugin.self]
+                PanToSeekPlugin.self,
+                PressToPausePlugin.self]
 
             Loader.shared.register(plugins: builtInPlugins)
             hasAlreadyRegisteredPlugins = true

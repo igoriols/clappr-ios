@@ -5,4 +5,6 @@ public enum InternalEvent: String {
     case willBeginScrubbing = "Clappr:willBeginScrubbing"
     case didFinishScrubbing = "Clappr:didFinishScrubbing"
     case didTapQuickSeek = "Clappr:didTapQuickSeek"
+    case didPressToPause = "Clappr:didPressToPause"
+    case didReleasePressToPause = "Clappr:didReleasePressToPause"
 }

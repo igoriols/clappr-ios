@@ -70,6 +70,14 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
                 guard self?.activePlayback?.state == .playing else { return }
                 self?.disappearAfterSomeTime()
             }
+
+            listenTo(core, eventName: InternalEvent.didPressToPause.rawValue) { [weak self] _ in
+                self?.currentlyShowing = false
+            }
+
+            listenTo(core, eventName: InternalEvent.didReleasePressToPause.rawValue) { [weak self] _ in
+                self?.currentlyShowing = true
+            }
         }
     }
 
