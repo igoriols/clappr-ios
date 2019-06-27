@@ -23,7 +23,7 @@ public class PressToPausePlugin: CorePlugin {
 
     private func addGesture() {
         pressGesture = UILongPressGestureRecognizer(target: self, action: #selector(onPress))
-        pressGesture.minimumPressDuration = 0.2
+        pressGesture.minimumPressDuration = 0.15
         coreView.addGestureRecognizer(pressGesture)
     }
 
@@ -32,13 +32,14 @@ public class PressToPausePlugin: CorePlugin {
         case .began:
             core?.trigger(InternalEvent.didPressToPause.rawValue)
             activePlayback?.pause()
+            impactFeedback()
         case .ended:
             core?.trigger(InternalEvent.didReleasePressToPause.rawValue)
             activePlayback?.play()
+            impactFeedback()
         default:
             Logger.logDebug("No action for \(recognizer.state) LongPress state")
         }
-        impactFeedback()
     }
 
     private func impactFeedback() {
