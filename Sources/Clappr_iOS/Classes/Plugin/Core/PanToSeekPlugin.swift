@@ -1,10 +1,9 @@
 import UIKit
 
 public class PanToSeekPlugin: UICorePlugin {
-
     var panGesture: UIPanGestureRecognizer!
-
     var label: UILabel!
+    private var seekableStates: [PlaybackState] = [.playing, .paused]
 
     open class override var name: String {
         return "PanToSeekPlugin"
@@ -38,6 +37,14 @@ public class PanToSeekPlugin: UICorePlugin {
         activePlayback?.on(Event.didSeek.rawValue) { [weak self] _ in
             self?.initialPosition = self?.activePlayback?.position
         }
+
+        core?.on(Event.willShowMediaControl.rawValue) { [weak self] _ in
+            self?.removeGesture()
+        }
+
+        core?.on(Event.willHideMediaControl.rawValue) { [weak self] _ in
+            self?.addGesture()
+        }
     }
 
     func addGesture() {
@@ -46,10 +53,14 @@ public class PanToSeekPlugin: UICorePlugin {
         coreView.addGestureRecognizer(panGesture)
     }
 
+    func removeGesture() {
+        coreView.removeGestureRecognizer(panGesture)
+    }
+
     private var initialPosition: TimeInterval?
 
     @objc func panSeek(recognizer: UIPanGestureRecognizer) {
-        guard let activePlayback = core?.activePlayback else { return }
+        guard let activePlayback = core?.activePlayback, seekableStates.contains(activePlayback.state) else { return }
         let coreWidth = coreView.frame.width
 
         if initialPosition == nil {
@@ -72,7 +83,6 @@ public class PanToSeekPlugin: UICorePlugin {
     }
 
     private func control(state: UIPanGestureRecognizer.State, secondsToSeek: TimeInterval) {
-
         switch state {
         case .began, .changed:
             hideLabel(false)
