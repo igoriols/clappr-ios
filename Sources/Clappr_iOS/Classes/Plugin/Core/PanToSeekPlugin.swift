@@ -60,7 +60,11 @@ public class PanToSeekPlugin: UICorePlugin {
         let pixelsPerSeconds = coreWidth / CGFloat(activePlayback.duration)
         let secondsToSeek = translation.x / pixelsPerSeconds
 
-        label.text = secondsToSeek > 0 ? "\(Int(secondsToSeek)) seconds \u{25BA}\u{25BA}" : "\u{25C4}\u{25C4} \(abs(Int(secondsToSeek))) seconds"
+        if secondsToSeek > 0 {
+            label.text = "     \(Int(secondsToSeek)) seconds \u{25BA}\u{25BA}"
+        } else {
+            label.text = "\u{25C4}\u{25C4} \(abs(Int(secondsToSeek))) seconds       "
+        }
 
         coreView.bringSubviewToFront(view)
 
