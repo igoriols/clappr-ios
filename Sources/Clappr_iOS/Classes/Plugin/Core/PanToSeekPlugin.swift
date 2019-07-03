@@ -38,12 +38,12 @@ public class PanToSeekPlugin: UICorePlugin {
             self?.initialPosition = self?.activePlayback?.position
         }
 
-        core?.on(Event.willShowMediaControl.rawValue) { [weak self] _ in
-            self?.removeGesture()
+        core?.on(Event.didHideMediaControl.rawValue) { [weak self] _ in
+            self?.addGesture()
         }
 
-        core?.on(Event.willHideMediaControl.rawValue) { [weak self] _ in
-            self?.addGesture()
+        core?.on(Event.didShowMediaControl.rawValue) { [weak self] _ in
+            self?.removeGesture()
         }
     }
 
@@ -51,10 +51,12 @@ public class PanToSeekPlugin: UICorePlugin {
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(panSeek))
         panGesture.minimumNumberOfTouches = 1
         coreView.addGestureRecognizer(panGesture)
+        print(#function)
     }
 
     func removeGesture() {
         coreView.removeGestureRecognizer(panGesture)
+        print(#function)
     }
 
     private var initialPosition: TimeInterval?
