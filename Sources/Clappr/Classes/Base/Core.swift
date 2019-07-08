@@ -99,12 +99,12 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     open func attach(to parentView: UIView, controller: UIViewController) {
         self.parentController = controller
         self.parentView = parentView
-        trigger(Event.didAttachView)
     }
 
     open override func render() {
         containers.forEach(renderContainer)
         addToContainer()
+        trigger(Event.didAttachView)
     }
 
     #if os(tvOS)
