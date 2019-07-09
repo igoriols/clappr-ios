@@ -272,15 +272,13 @@ class PlayerTests: QuickSpec {
             describe("#attachTo") {
                 it("triggers didAttachView") {
                     let player = Player(options: [:])
-                    let view = UIView(frame: .zero)
-                    let controller = UIViewController()
 
                     var didTriggerEvent = false
                     player.listenTo(player.core!, eventName: Event.didAttachView.rawValue) { _ in
                         didTriggerEvent = true
                     }
 
-                    player.attachTo(view, controller: controller)
+                    player.core?.render()
 
                     expect(didTriggerEvent).to(beTrue())
                 }
