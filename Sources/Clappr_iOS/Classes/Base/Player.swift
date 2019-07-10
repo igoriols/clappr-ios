@@ -192,6 +192,7 @@ open class Player: BaseObject {
     open class func register(plugins: [Plugin.Type]) {
         if !hasAlreadyRegisteredPlugins {
             let builtInPlugins: [Plugin.Type] = [
+                BackgroundPlugin.self,
                 MediaControl.self,
                 PosterPlugin.self,
                 SpinnerPlugin.self,
