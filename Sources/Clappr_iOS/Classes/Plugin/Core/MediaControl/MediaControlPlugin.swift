@@ -16,13 +16,3 @@ public enum MediaControlPosition {
     case right
     case none
 }
-
-open class MediaControlPlugin: UICorePlugin, MediaControlPluginType {
-    open var panel: MediaControlPanel {
-        return .center
-    }
-    
-    open var position: MediaControlPosition {
-        return .left
-    }
-}

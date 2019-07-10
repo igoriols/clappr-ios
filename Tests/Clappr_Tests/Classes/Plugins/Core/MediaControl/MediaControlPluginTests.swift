@@ -5,7 +5,7 @@ import Nimble
 
 class MediaControlPluginTests: QuickSpec {
     override func spec() {
-        var mediaControlPlugin: MediaControlPlugin!
+        var mediaControlPlugin: MediaControl.Element!
         var core: Core!
 
         beforeEach {
@@ -52,7 +52,7 @@ class MediaControlPluginTests: QuickSpec {
     }
 }
 
-class StubMediaControlPlugin: MediaControlPlugin {
+class StubMediaControlPlugin: MediaControl.Element {
     override class var name: String {
         return "StubMediaControlPlugin"
     }

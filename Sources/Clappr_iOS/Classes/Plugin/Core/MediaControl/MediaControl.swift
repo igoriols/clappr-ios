@@ -1,6 +1,17 @@
 import Foundation
 
 open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
+
+    open class Element: UICorePlugin, MediaControlPluginType {
+        open var panel: MediaControlPanel {
+            return .center
+        }
+
+        open var position: MediaControlPosition {
+            return .left
+        }
+    }
+
     public var tapGesture: UITapGestureRecognizer?
 
     var mediaControlView: MediaControlView = .fromNib()
@@ -197,15 +208,12 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         
         view.isHidden = true
         view.backgroundColor = UIColor.clear
-        if let constrastView = mediaControlView.contrastView {
-            constrastView.backgroundColor = UIColor.clapprBlack60Color()
-        }
 
         showIfAlwaysVisible()
         view.bindFrameToSuperviewBounds()
     }
 
-    func renderPlugins(_ plugins: [MediaControlPlugin]) {
+    func renderPlugins(_ plugins: [Element]) {
         let orderedPlugins = sortPluginsIfNeeded(plugins)
         orderedPlugins.forEach { plugin in
             mediaControlView.addSubview(plugin.view, in: plugin.panel, at: plugin.position)
@@ -220,9 +228,9 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         }
     }
 
-    private func sortPluginsIfNeeded(_ plugins: [MediaControlPlugin]) -> [MediaControlPlugin] {
+    private func sortPluginsIfNeeded(_ plugins: [Element]) -> [Element] {
         if let pluginsOrder = core?.options[kMediaControlPluginsOrder] as? [String] {
-            var orderedPlugins = [MediaControlPlugin]()
+            var orderedPlugins = [Element]()
             pluginsOrder.forEach { pluginName in
                 if let selectedPlugin = plugins.first(where: { $0.pluginName == pluginName }) {
                     orderedPlugins.append(selectedPlugin)

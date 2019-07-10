@@ -1,6 +1,7 @@
 open class Core: UIObject, UIGestureRecognizerDelegate {
 
     @objc public let environment = Environment()
+    var bottomDrawer: UIView!
 
     @objc open var options: Options {
         didSet {
@@ -131,13 +132,13 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
         let mediaControl = plugins.first { $0 is MediaControl }
 
         if let mediaControl = mediaControl as? MediaControl {
-            let mediaControlPlugins = plugins.compactMap { $0 as? MediaControlPlugin }
+            let mediaControlPlugins = plugins.compactMap { $0 as? MediaControl.Element }
             mediaControl.renderPlugins(mediaControlPlugins)
         }
     }
 
     private func isNotMediaControlPlugin(_ plugin: Plugin) -> Bool {
-        return !(plugin is MediaControlPlugin)
+        return !(plugin is MediaControl.Element)
     }
     #endif
 
