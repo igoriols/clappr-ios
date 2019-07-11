@@ -34,6 +34,8 @@ class BottomDrawerPlugin: DrawerPlugin {
     }
 
     override func bindEvents() {
+        super.bindEvents()
+
         guard let container = core?.activeContainer else { return }
         listenTo(container, event: .didResize) { [weak self] _ in
             self?.updateWidth()

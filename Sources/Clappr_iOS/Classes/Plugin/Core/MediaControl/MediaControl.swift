@@ -81,6 +81,12 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
                 guard self?.activePlayback?.state == .playing else { return }
                 self?.disappearAfterSomeTime()
             }
+
+            listenTo(core, event: .didDragDrawer) { [weak self] info in
+                guard let alpha = info?["alpha"] as? CGFloat else { return }
+                let mediaControlElements = self?.core?.plugins.filter({ $0 is Element }) as? [Element]
+                mediaControlElements?.forEach({ $0.view.alpha = alpha })
+            }
         }
     }
 

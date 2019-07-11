@@ -45,5 +45,23 @@ class DrawerPlugin: OverlayPlugin {
         super.init(context: context)
         let blurEffect = UIBlurEffect(style: .light)
         view = UIVisualEffectView(effect: blurEffect)
+        view.alpha = 0
+    }
+
+    override func bindEvents() {
+        guard let core = core else { return }
+        listenTo(core, event: .willHideMediaControl) { [weak self] _ in
+            self?.animateNewAlpha(to: 0)
+        }
+
+        listenTo(core, event: .willShowMediaControl) { [weak self] _ in
+            self?.animateNewAlpha(to: 1)
+        }
+    }
+
+    private func animateNewAlpha(to newAlpha: CGFloat) {
+        UIView.animate(withDuration: 0.5) {
+            self.view.alpha = newAlpha
+        }
     }
 }
