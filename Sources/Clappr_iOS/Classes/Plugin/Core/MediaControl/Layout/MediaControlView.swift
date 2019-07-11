@@ -1,5 +1,7 @@
 class MediaControlView: UIView {
 
+    @IBOutlet weak var contrastView: UIView!
+
     @IBOutlet weak var topPanel: UIView!
     @IBOutlet weak var centerPanel: UIView!
     @IBOutlet weak var bottomPanel: UIView!

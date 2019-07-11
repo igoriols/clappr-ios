@@ -94,8 +94,6 @@
 		32E4021F1FF43534001C2096 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E4021D1FF43534001C2096 /* Nimble.framework */; };
 		32FC971B20B7257800ABA0C2 /* AVURLAssetWithCookiesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57937C561FB0DD0D000A239E /* AVURLAssetWithCookiesBuilder.swift */; };
 		32FC971C20B72C4200ABA0C2 /* AVURLAssetWithCookiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57937C581FB0DD27000A239E /* AVURLAssetWithCookiesTests.swift */; };
-		4820E6E222D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */; };
-		4820E6E322D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */; };
 		4820E6E522D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
 		4820E6E622D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
 		4820E6E922D77342005CAED6 /* DrawerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E822D77342005CAED6 /* DrawerPlugin.swift */; };
@@ -426,7 +424,6 @@
 		32E4020E1FF43262001C2096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32E4021C1FF43533001C2096 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
 		32E4021D1FF43534001C2096 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
-		4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPlugin.swift; sourceTree = "<group>"; };
 		4820E6E422D67058005CAED6 /* OverlayPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayPlugin.swift; sourceTree = "<group>"; };
 		4820E6E822D77342005CAED6 /* DrawerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPlugin.swift; sourceTree = "<group>"; };
 		4820E6EB22D7735A005CAED6 /* BottomDrawerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomDrawerPlugin.swift; sourceTree = "<group>"; };
@@ -1125,7 +1122,6 @@
 				4856322C220B54A70096CDAE /* Base */,
 				C92F1C97216F80B80059D860 /* Core */,
 				9E26CFF62016151800AE92B7 /* Container */,
-				4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -1911,7 +1907,6 @@
 				48A995192220842000042C0E /* UIPluginStub.swift in Sources */,
 				FBD47AAD21AD6733003265AF /* CoreFactory.swift in Sources */,
 				32E401BC1FF422E0001C2096 /* Logger.swift in Sources */,
-				4820E6E322D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */,
 				48A29BFD221D81910004AD3B /* BaseObject.swift in Sources */,
 				32E401BD1FF422E0001C2096 /* LogLevel.swift in Sources */,
 				5744C05821EE37270087D9FB /* EventHandler.swift in Sources */,
@@ -2115,7 +2110,6 @@
 				4820E6E922D77342005CAED6 /* DrawerPlugin.swift in Sources */,
 				C9F6D7B62182650B0055A599 /* SeekbarView.swift in Sources */,
 				E7BEEB59217506C100B8F7FA /* TimeIndicator.swift in Sources */,
-				4820E6E222D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */,
 				5744C05721EE1E040087D9FB /* ObjC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
