@@ -11,9 +11,7 @@ class DrawerPlugin: OverlayPlugin {
         return "OverlayPlugin"
     }
 
-    open var isOpen: Bool {
-        return false
-    }
+    open var isOpen: Bool = false
 
     open var position: Position {
         return .none
@@ -25,6 +23,12 @@ class DrawerPlugin: OverlayPlugin {
 
     open var height: CGFloat {
         return 0
+    }
+
+    required init(context: UIObject) {
+        super.init(context: context)
+        let blurEffect = UIBlurEffect(style: .light)
+        view = UIVisualEffectView(effect: blurEffect)
     }
 
     enum Position {
@@ -105,13 +109,34 @@ class BottomDrawer: DrawerPlugin {
         return canDragUp && canDragDown
     }
 
+    @objc func onTap(_ gesture: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.5, animations: toggleDrawer)
+    }
+
+    private func toggleDrawer() {
+        let newY = isOpen ? initialY : openedY
+        view.frame = CGRect(x: .zero, y: newY, width: width, height: height)
+        isOpen.toggle()
+    }
+
     override func render() {
         view.frame = CGRect(x: .zero, y: initialY, width: width, height: height)
-        view.backgroundColor = .red
+        view.layoutIfNeeded()
+        initialCenterY = view.center.y
 
+        addDragGesture()
+        addTapGesture()
+
+        core?.trigger(.didLoadDrawer, userInfo: ["position": position])
+    }
+
+    private func addDragGesture() {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(onDrag))
         view.addGestureRecognizer(gesture)
-        initialCenterY = view.center.y
-        core?.trigger(.didLoadDrawer, userInfo: ["position": position])
+    }
+
+    private func addTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        view.addGestureRecognizer(gesture)
     }
 }
