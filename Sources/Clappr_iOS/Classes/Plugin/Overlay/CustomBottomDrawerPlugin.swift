@@ -1,4 +1,4 @@
-class CustomBottomDrawerPlugin: BottomDrawerPlugin {
+public class CustomBottomDrawerPlugin: BottomDrawerPlugin {
     open class override var name: String {
         return "CustomBottomDrawerPlugin"
     }
