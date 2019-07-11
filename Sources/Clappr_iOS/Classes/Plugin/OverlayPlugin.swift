@@ -54,7 +54,7 @@ class BottomDrawer: DrawerPlugin {
     }
 
     override var height: CGFloat {
-        return 100
+        return coreViewBounds.height / 2
     }
 
     private var coreViewBounds: CGRect {
