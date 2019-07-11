@@ -27,7 +27,9 @@ class DrawerPlugin: OverlayPlugin {
         return "OverlayPlugin"
     }
 
-    open var isOpen: Bool = false
+    open var isOpen: Bool {
+        return false
+    }
 
     open var position: Position {
         return .none
@@ -51,7 +53,9 @@ class DrawerPlugin: OverlayPlugin {
     override func bindEvents() {
         guard let core = core else { return }
         listenTo(core, event: .willHideMediaControl) { [weak self] _ in
-            self?.animateNewAlpha(to: 0)
+            if self?.isOpen == false {
+                self?.animateNewAlpha(to: 0)
+            }
         }
 
         listenTo(core, event: .willShowMediaControl) { [weak self] _ in

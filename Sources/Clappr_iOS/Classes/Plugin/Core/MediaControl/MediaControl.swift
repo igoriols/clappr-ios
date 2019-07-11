@@ -1,5 +1,3 @@
-import Foundation
-
 open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
 
     open class Element: UICorePlugin, MediaControlPluginType {
@@ -91,6 +89,10 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
                 guard let alpha = info?["alpha"] as? CGFloat else { return }
                 let mediaControlElements = self?.core?.plugins.filter({ $0 is Element }) as? [Element]
                 mediaControlElements?.forEach({ $0.view.alpha = alpha })
+            }
+
+            listenTo(core, event: .didOpenDrawer) { [weak self] _ in
+                self?.hide()
             }
         }
     }

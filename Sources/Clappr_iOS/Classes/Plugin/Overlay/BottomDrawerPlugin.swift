@@ -36,10 +36,18 @@ class BottomDrawerPlugin: DrawerPlugin {
     override func bindEvents() {
         super.bindEvents()
 
-        guard let container = core?.activeContainer else { return }
+        guard let core = core, let container = core.activeContainer else { return }
         listenTo(container, event: .didResize) { [weak self] _ in
             self?.updateWidth()
         }
+
+        listenTo(core, event: .willShowMediaControl) { [weak self] _ in
+            self?.closeDrawer()
+        }
+    }
+
+    override var isOpen: Bool {
+        return initialY != view.frame.origin.y
     }
 
     private func updateWidth() {
@@ -73,13 +81,31 @@ class BottomDrawerPlugin: DrawerPlugin {
     }
 
     @objc func onTap(_ gesture: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.5, animations: onToggle)
+        openDrawer()
     }
 
-    private func onToggle() {
-        let newY = isOpen ? initialY : openedY
-        view.frame = CGRect(x: .zero, y: newY, width: width, height: height)
-        isOpen.toggle()
+    private func openDrawer() {
+        UIView.animate(withDuration: 0.5) {
+            self.view.frame = CGRect(
+                x: .zero,
+                y: self.openedY,
+                width: self.width,
+                height: self.height
+            )
+            self.core?.trigger(.didOpenDrawer)
+        }
+    }
+
+    private func closeDrawer() {
+        UIView.animate(withDuration: 0.5) {
+            self.view.frame = CGRect(
+                x: .zero,
+                y: self.initialY,
+                width: self.width,
+                height: self.height
+            )
+            self.core?.trigger(.didCloseDrawer)
+        }
     }
 
     override func render() {

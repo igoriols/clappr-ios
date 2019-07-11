@@ -58,4 +58,6 @@ public enum Event: String, CaseIterable {
     case didAttachView = "Clappr:didAttachView"
     case didLoadDrawer = "Clappr:didLoadDrawer"
     case didDragDrawer = "Clappr:didDragDrawer"
+    case didOpenDrawer = "Clappr:didOpenDrawer"
+    case didCloseDrawer = "Clappr:didCloseDrawer"
 }
