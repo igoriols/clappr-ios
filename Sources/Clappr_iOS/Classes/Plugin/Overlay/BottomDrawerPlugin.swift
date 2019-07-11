@@ -15,6 +15,10 @@ class BottomDrawerPlugin: DrawerPlugin {
         return coreViewBounds.height / 2
     }
 
+    override var isOpen: Bool {
+        return initialY != view.frame.origin.y
+    }
+
     private var hiddenHeight: CGFloat {
         return height - position.placeHolderSize()
     }
@@ -31,6 +35,12 @@ class BottomDrawerPlugin: DrawerPlugin {
 
     private var openedY: CGFloat {
         return coreViewBounds.height - view.frame.height
+    }
+
+    private let openDrawerThreshold: CGFloat = 10
+
+    private var isClosingWithinTreshold: Bool {
+        return initialY - view.frame.origin.y < openDrawerThreshold
     }
 
     override func bindEvents() {
@@ -54,10 +64,6 @@ class BottomDrawerPlugin: DrawerPlugin {
         }
     }
 
-    override var isOpen: Bool {
-        return initialY != view.frame.origin.y
-    }
-
     private func updateWidth() {
         view.frame = CGRect(
             x: view.frame.origin.x,
@@ -79,6 +85,13 @@ class BottomDrawerPlugin: DrawerPlugin {
             let portionShown = initialCenterY - newYCoordinate
             let alpha = hiddenHeight / portionShown * 0.1
             core?.trigger(.didDragDrawer, userInfo: ["alpha": alpha])
+        }
+
+        if gesture.state == .ended  && isClosingWithinTreshold {
+            closeDrawer()
+            UIView.animate(withDuration: ClapprAnimationDuration.mediaControlHide) {
+                self.view.alpha = 0
+            }
         }
     }
 

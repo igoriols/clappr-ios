@@ -51,20 +51,24 @@ class DrawerPlugin: OverlayPlugin {
     }
 
     override func bindEvents() {
-        guard let core = core else { return }
+        guard let core = core, let playback = core.activePlayback else { return }
         listenTo(core, event: .willHideMediaControl) { [weak self] _ in
             if self?.isOpen == false {
-                self?.animateNewAlpha(to: 0)
+                self?.animateNewAlpha(to: 0, duration: ClapprAnimationDuration.mediaControlHide)
             }
         }
 
         listenTo(core, event: .willShowMediaControl) { [weak self] _ in
-            self?.animateNewAlpha(to: 1)
+            self?.animateNewAlpha(to: 1, duration: ClapprAnimationDuration.mediaControlShow)
+        }
+
+        listenTo(playback, event: .didComplete) { [weak self] _ in
+            self?.animateNewAlpha(to: 0, duration: ClapprAnimationDuration.mediaControlHide)
         }
     }
 
-    private func animateNewAlpha(to newAlpha: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
+    private func animateNewAlpha(to newAlpha: CGFloat, duration: TimeInterval) {
+        UIView.animate(withDuration: duration) {
             self.view.alpha = newAlpha
         }
     }
