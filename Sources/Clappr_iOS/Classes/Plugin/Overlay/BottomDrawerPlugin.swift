@@ -44,6 +44,14 @@ class BottomDrawerPlugin: DrawerPlugin {
         listenTo(core, event: .willShowMediaControl) { [weak self] _ in
             self?.closeDrawer()
         }
+
+        listenTo(core, event: .didEnterFullscreen) { [weak self] _ in
+            self?.render()
+        }
+
+        listenTo(core, event: .didExitFullscreen) { [weak self] _ in
+            self?.render()
+        }
     }
 
     override var isOpen: Bool {
