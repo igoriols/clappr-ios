@@ -17,6 +17,11 @@ class MediaControlView: UIView {
     @IBOutlet weak var bottomRight: UIStackView!
     @IBOutlet weak var bottomNone: UIStackView!
 
+    @IBOutlet weak var topMargin: NSLayoutConstraint!
+    @IBOutlet weak var rightMargin: NSLayoutConstraint!
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var leftMargin: NSLayoutConstraint!
+    
     var panels: [MediaControlPanel: [MediaControlPosition: UIStackView]] {
         return [
             .top: [

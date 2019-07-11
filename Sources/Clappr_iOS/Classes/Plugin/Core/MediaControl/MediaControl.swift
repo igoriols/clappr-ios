@@ -82,12 +82,33 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
                 self?.disappearAfterSomeTime()
             }
 
+            listenTo(core, event: .didLoadDrawer) { [weak self] info in
+                guard let position = info?["position"] as? DrawerPlugin.Position else { return }
+                self?.handleDrawer(for: position)
+            }
+
             listenTo(core, event: .didDragDrawer) { [weak self] info in
                 guard let alpha = info?["alpha"] as? CGFloat else { return }
                 let mediaControlElements = self?.core?.plugins.filter({ $0 is Element }) as? [Element]
                 mediaControlElements?.forEach({ $0.view.alpha = alpha })
             }
         }
+    }
+
+    private func handleDrawer(for position: DrawerPlugin.Position) {
+        switch position {
+        case .top(let placeholderPadding):
+            mediaControlView.topMargin.constant = -placeholderPadding
+        case .right(let placeholderPadding):
+            mediaControlView.rightMargin.constant = -placeholderPadding
+        case .bottom(let placeholderPadding):
+            mediaControlView.bottomMargin.constant = -placeholderPadding
+        case .left(let placeholderPadding):
+            mediaControlView.leftMargin.constant = -placeholderPadding
+        default:
+            Logger.logInfo("Handle other possible drawer positions")
+        }
+        view.layoutIfNeeded()
     }
 
     private func bindContainerEvents() {
