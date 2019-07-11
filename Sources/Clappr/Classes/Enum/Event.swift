@@ -57,4 +57,5 @@ public enum Event: String, CaseIterable {
     case didResize = "Clappr:didResize"
     case didAttachView = "Clappr:didAttachView"
     case didLoadDrawer = "Clappr:didLoadDrawer"
+    case didDragDrawer = "Clappr:didDragDrawer"
 }

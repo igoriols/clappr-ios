@@ -1,7 +1,6 @@
 open class Core: UIObject, UIGestureRecognizerDelegate {
 
     @objc public let environment = Environment()
-    var bottomDrawer: UIView!
 
     @objc open var options: Options {
         didSet {

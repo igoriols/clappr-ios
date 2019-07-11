@@ -1,56 +1,10 @@
-class OverlayPlugin: UICorePlugin {
+class BottomDrawerPlugin: DrawerPlugin {
     open class override var name: String {
-        return "OverlayPlugin"
-    }
-
-    open var isModal: Bool = false
-}
-
-class DrawerPlugin: OverlayPlugin {
-    open class override var name: String {
-        return "OverlayPlugin"
-    }
-
-    open var isOpen: Bool = false
-
-    open var position: Position {
-        return .none
-    }
-
-    open var width: CGFloat {
-        return 0
-    }
-
-    open var height: CGFloat {
-        return 0
-    }
-
-    required init(context: UIObject) {
-        super.init(context: context)
-        let blurEffect = UIBlurEffect(style: .light)
-        view = UIVisualEffectView(effect: blurEffect)
-    }
-
-    enum Position {
-        case left
-        case right
-        case top
-        case bottom
-        case none
-
-        func placeHolderSize() -> CGFloat {
-            return 30
-        }
-    }
-}
-
-class BottomDrawer: DrawerPlugin {
-    open class override var name: String {
-        return "BottomDrawer"
+        return "BottomDrawerPlugin"
     }
 
     override var position: DrawerPlugin.Position {
-        return .bottom
+        return .bottom(placeholder: 20)
     }
 
     override var width: CGFloat {
@@ -59,6 +13,10 @@ class BottomDrawer: DrawerPlugin {
 
     override var height: CGFloat {
         return coreViewBounds.height / 2
+    }
+
+    private var hiddenHeight: CGFloat {
+        return height - position.placeHolderSize()
     }
 
     private var coreViewBounds: CGRect {
@@ -99,21 +57,24 @@ class BottomDrawer: DrawerPlugin {
         if gesture.state == .changed && isDraggable {
             recognizerView.center.y = newYCoordinate
             gesture.setTranslation(.zero, in: recognizerView)
+
+            let portionShown = initialCenterY - newYCoordinate
+            let alpha = hiddenHeight / portionShown * 0.1
+            core?.trigger(.didDragDrawer, userInfo: ["alpha": alpha])
         }
     }
 
-    private func canDrag(with newYPosition: CGFloat) -> Bool {
-        let hiddenHeight = height - position.placeHolderSize()
-        let canDragUp = initialCenterY - newYPosition < hiddenHeight
-        let canDragDown = initialCenterY > newYPosition
+    private func canDrag(with newYCoordinate: CGFloat) -> Bool {
+        let canDragUp = initialCenterY - newYCoordinate < hiddenHeight
+        let canDragDown = initialCenterY > newYCoordinate
         return canDragUp && canDragDown
     }
 
     @objc func onTap(_ gesture: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.5, animations: toggleDrawer)
+        UIView.animate(withDuration: 0.5, animations: onToggle)
     }
 
-    private func toggleDrawer() {
+    private func onToggle() {
         let newY = isOpen ? initialY : openedY
         view.frame = CGRect(x: .zero, y: newY, width: width, height: height)
         isOpen.toggle()
