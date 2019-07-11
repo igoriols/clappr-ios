@@ -96,6 +96,8 @@
 		32FC971C20B72C4200ABA0C2 /* AVURLAssetWithCookiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57937C581FB0DD27000A239E /* AVURLAssetWithCookiesTests.swift */; };
 		4820E6E222D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */; };
 		4820E6E322D65A4B005CAED6 /* BackgroundPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */; };
+		4820E6E522D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
+		4820E6E622D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
 		4822B6AD220B6F7200D1C134 /* Core+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563228220B47B10096CDAE /* Core+Ext.swift */; };
 		4822B6AF220C72AE00D1C134 /* SeekBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822B6AE220C72AE00D1C134 /* SeekBubble.swift */; };
 		4822B6B1220C72D100D1C134 /* SeekBubbleSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822B6B0220C72D100D1C134 /* SeekBubbleSide.swift */; };
@@ -419,6 +421,7 @@
 		32E4021C1FF43533001C2096 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
 		32E4021D1FF43534001C2096 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
 		4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPlugin.swift; sourceTree = "<group>"; };
+		4820E6E422D67058005CAED6 /* OverlayPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayPlugin.swift; sourceTree = "<group>"; };
 		4822B6AE220C72AE00D1C134 /* SeekBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekBubble.swift; sourceTree = "<group>"; };
 		4822B6B0220C72D100D1C134 /* SeekBubbleSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekBubbleSide.swift; sourceTree = "<group>"; };
 		4822B6B32214961900D1C134 /* ClapprAnimationDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClapprAnimationDuration.swift; sourceTree = "<group>"; };
@@ -1102,6 +1105,7 @@
 				C92F1C97216F80B80059D860 /* Core */,
 				9E26CFF62016151800AE92B7 /* Container */,
 				4820E6E122D65A4B005CAED6 /* BackgroundPlugin.swift */,
+				4820E6E422D67058005CAED6 /* OverlayPlugin.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -1870,6 +1874,7 @@
 				32E401CA1FF42372001C2096 /* UIPlugin.swift in Sources */,
 				4822B6B522158FA300D1C134 /* ClapprAnimationDuration.swift in Sources */,
 				32E401CE1FF42386001C2096 /* GradientView.swift in Sources */,
+				4820E6E622D67058005CAED6 /* OverlayPlugin.swift in Sources */,
 				32755E22215038CB0088724E /* Playback.swift in Sources */,
 				488849B122845D97004B4AD1 /* AVAsset+Ext.swift in Sources */,
 				3251114721359BD8001FEEBA /* Core.swift in Sources */,
@@ -2025,6 +2030,7 @@
 				96D362E61D41339400CCB866 /* EventProtocol.swift in Sources */,
 				CD57FCF122949BB300AB24CF /* SimpleContainerPlugin.swift in Sources */,
 				C9F6D7B9218265140055A599 /* Seekbar.swift in Sources */,
+				4820E6E522D67058005CAED6 /* OverlayPlugin.swift in Sources */,
 				C9177B2E21664D1C001D0292 /* UIImage+Ext.swift in Sources */,
 				4822B6B1220C72D100D1C134 /* SeekBubbleSide.swift in Sources */,
 				96D362E11D41339400CCB866 /* UIContainerPlugin.swift in Sources */,

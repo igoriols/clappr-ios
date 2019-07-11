@@ -201,7 +201,8 @@ open class Player: BaseObject {
                 FullscreenButton.self,
                 Seekbar.self,
                 QuickSeekCorePlugin.self,
-                QuickSeekMediaControlPlugin.self]
+                QuickSeekMediaControlPlugin.self,
+                BottomDrawer.self]
 
             Loader.shared.register(plugins: builtInPlugins)
             hasAlreadyRegisteredPlugins = true
