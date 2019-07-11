@@ -27,7 +27,7 @@ class BottomDrawerPlugin: DrawerPlugin {
         return core?.view.bounds ?? .zero
     }
 
-    private var initialCenterY = CGFloat.zero
+    private var initialCenterY: CGFloat = .zero
 
     private var initialY: CGFloat {
         return coreViewBounds.height - position.placeHolderSize()
@@ -37,14 +37,20 @@ class BottomDrawerPlugin: DrawerPlugin {
         return coreViewBounds.height - view.frame.height
     }
 
+    required init(context: UIObject) {
+        super.init(context: context)
+        addDragGesture()
+        addTapGesture()
+    }
+
     override func bindEvents() {
         super.bindEvents()
+        bindCoreEvents()
+        bindContainerEvents()
+    }
 
-        guard let core = core, let container = core.activeContainer else { return }
-        listenTo(container, event: .didResize) { [weak self] _ in
-            self?.updateWidth()
-        }
-
+    private func bindCoreEvents() {
+        guard let core = core else { return }
         listenTo(core, event: .willShowMediaControl) { [weak self] _ in
             self?.closeDrawer()
         }
@@ -58,6 +64,13 @@ class BottomDrawerPlugin: DrawerPlugin {
         }
     }
 
+    private func bindContainerEvents() {
+        guard let container = core?.activeContainer else { return }
+        listenTo(container, event: .didResize) { [weak self] _ in
+            self?.updateWidth()
+        }
+    }
+
     private func updateWidth() {
         view.frame = CGRect(
             x: view.frame.origin.x,
@@ -68,29 +81,39 @@ class BottomDrawerPlugin: DrawerPlugin {
 
     @objc func onDrag(_ gesture: UIPanGestureRecognizer) {
         guard let recognizerView = gesture.view else { return }
+        
         let translation = gesture.translation(in: recognizerView)
         let newYCoordinate = recognizerView.center.y + translation.y
-        let isDraggable = canDrag(with: newYCoordinate)
-        
-        if gesture.state == .changed && isDraggable {
-            recognizerView.center.y = newYCoordinate
-            gesture.setTranslation(.zero, in: recognizerView)
 
+        switch gesture.state {
+        case .began, .changed:
+            handleGestureChange(for: newYCoordinate, within: recognizerView)
+        case .ended, .failed:
+            handleGestureEnded(for: newYCoordinate)
+        default:
+            Logger.logInfo("undandled gesture state")
+        }
+
+        gesture.setTranslation(.zero, in: view)
+    }
+
+    private func handleGestureChange(for newYCoordinate: CGFloat, within view: UIView) {
+        if canDrag(with: newYCoordinate) {
+            view.center.y = newYCoordinate
             let portionShown = initialCenterY - newYCoordinate
             let alpha = hiddenHeight / portionShown * 0.1
             core?.trigger(.didDragDrawer, userInfo: ["alpha": alpha])
         }
+    }
 
-        if gesture.state == .ended {
-            let portionShown = initialCenterY - newYCoordinate
-            let isOpening = portionShown / hiddenHeight > 0.5
+    private func handleGestureEnded(for newYCoordinate: CGFloat) {
+        let portionShown = initialCenterY - newYCoordinate
+        let isHalfWayOpen = portionShown / hiddenHeight > 0.5
 
-            if isOpening {
-                openDrawer()
-            } else {
-                closeDrawer()
-                core?.trigger(.didCloseDrawer)
-            }
+        if isHalfWayOpen {
+            openDrawer()
+        } else {
+            closeDrawer()
         }
     }
 
@@ -105,37 +128,33 @@ class BottomDrawerPlugin: DrawerPlugin {
     }
 
     private func openDrawer() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: ClapprAnimationDuration.mediaControlShow) {
             self.view.frame = CGRect(
                 x: .zero,
                 y: self.openedY,
                 width: self.width,
                 height: self.height
             )
-            self.core?.trigger(.didOpenDrawer)
         }
+        core?.trigger(.didOpenDrawer)
     }
 
     private func closeDrawer() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: ClapprAnimationDuration.mediaControlHide) {
             self.view.frame = CGRect(
                 x: .zero,
                 y: self.initialY,
                 width: self.width,
                 height: self.height
             )
-            self.core?.trigger(.didCloseDrawer)
         }
+        core?.trigger(.didCloseDrawer)
     }
 
     override func render() {
         view.frame = CGRect(x: .zero, y: initialY, width: width, height: height)
         view.layoutIfNeeded()
         initialCenterY = view.center.y
-
-        addDragGesture()
-        addTapGesture()
-
         core?.trigger(.didLoadDrawer, userInfo: ["position": position])
     }
 

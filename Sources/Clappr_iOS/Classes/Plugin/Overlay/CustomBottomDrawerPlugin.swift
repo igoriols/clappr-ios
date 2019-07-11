@@ -3,12 +3,11 @@ class CustomBottomDrawerPlugin: BottomDrawerPlugin {
         return "CustomBottomDrawerPlugin"
     }
 
-    var label = UILabel()
-    var backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    private var label = UILabel()
+    private var backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
     required init(context: UIObject) {
         super.init(context: context)
-
         view.addSubviewMatchingConstraints(backgroundView)
         view.addSubviewMatchingConstraints(label)
     }
@@ -24,5 +23,6 @@ class CustomBottomDrawerPlugin: BottomDrawerPlugin {
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .white
         label.shadowColor = .black
+        label.shadowOffset = CGSize(width: 0, height: 1)
     }
 }

@@ -49,7 +49,19 @@ class DrawerPlugin: OverlayPlugin {
     }
 
     override func bindEvents() {
-        guard let core = core, let playback = core.activePlayback else { return }
+        bindCoreEvents()
+        bindPlaybackEvents()
+    }
+
+    private func bindPlaybackEvents() {
+        guard let playback = core?.activePlayback else { return }
+        listenTo(playback, event: .didComplete) { [weak self] _ in
+            self?.animateNewAlpha(to: 0, duration: ClapprAnimationDuration.mediaControlHide)
+        }
+    }
+
+    private func bindCoreEvents() {
+        guard let core = core else { return }
         listenTo(core, event: .willHideMediaControl) { [weak self] _ in
             if self?.isOpen == false {
                 self?.animateNewAlpha(to: 0, duration: ClapprAnimationDuration.mediaControlHide)
@@ -58,10 +70,6 @@ class DrawerPlugin: OverlayPlugin {
 
         listenTo(core, event: .willShowMediaControl) { [weak self] _ in
             self?.animateNewAlpha(to: 1, duration: ClapprAnimationDuration.mediaControlShow)
-        }
-
-        listenTo(playback, event: .didComplete) { [weak self] _ in
-            self?.animateNewAlpha(to: 0, duration: ClapprAnimationDuration.mediaControlHide)
         }
     }
 
