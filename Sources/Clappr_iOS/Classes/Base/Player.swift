@@ -202,7 +202,7 @@ open class Player: BaseObject {
                 Seekbar.self,
                 QuickSeekCorePlugin.self,
                 QuickSeekMediaControlPlugin.self,
-                BottomDrawerPlugin.self]
+                CustomBottomDrawerPlugin.self]
 
             Loader.shared.register(plugins: builtInPlugins)
             hasAlreadyRegisteredPlugins = true

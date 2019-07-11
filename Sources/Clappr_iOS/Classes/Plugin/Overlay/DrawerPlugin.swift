@@ -45,8 +45,6 @@ class DrawerPlugin: OverlayPlugin {
 
     required init(context: UIObject) {
         super.init(context: context)
-        let blurEffect = UIBlurEffect(style: .light)
-        view = UIVisualEffectView(effect: blurEffect)
         view.alpha = 0
     }
 

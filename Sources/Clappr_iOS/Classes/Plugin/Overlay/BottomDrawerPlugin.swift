@@ -37,12 +37,6 @@ class BottomDrawerPlugin: DrawerPlugin {
         return coreViewBounds.height - view.frame.height
     }
 
-    private let openDrawerThreshold: CGFloat = 10
-
-    private var isClosingWithinTreshold: Bool {
-        return initialY - view.frame.origin.y < openDrawerThreshold
-    }
-
     override func bindEvents() {
         super.bindEvents()
 
@@ -77,7 +71,7 @@ class BottomDrawerPlugin: DrawerPlugin {
         let translation = gesture.translation(in: recognizerView)
         let newYCoordinate = recognizerView.center.y + translation.y
         let isDraggable = canDrag(with: newYCoordinate)
-
+        
         if gesture.state == .changed && isDraggable {
             recognizerView.center.y = newYCoordinate
             gesture.setTranslation(.zero, in: recognizerView)
@@ -87,10 +81,15 @@ class BottomDrawerPlugin: DrawerPlugin {
             core?.trigger(.didDragDrawer, userInfo: ["alpha": alpha])
         }
 
-        if gesture.state == .ended  && isClosingWithinTreshold {
-            closeDrawer()
-            UIView.animate(withDuration: ClapprAnimationDuration.mediaControlHide) {
-                self.view.alpha = 0
+        if gesture.state == .ended {
+            let portionShown = initialCenterY - newYCoordinate
+            let isOpening = portionShown / hiddenHeight > 0.5
+
+            if isOpening {
+                openDrawer()
+            } else {
+                closeDrawer()
+                core?.trigger(.didCloseDrawer)
             }
         }
     }
