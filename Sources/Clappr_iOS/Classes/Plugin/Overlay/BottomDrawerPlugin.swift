@@ -7,15 +7,15 @@ public class BottomDrawerPlugin: DrawerPlugin {
         return .bottom(placeholder: 20)
     }
 
-    override var width: CGFloat {
+    override public var width: CGFloat {
         return core?.view.bounds.width ?? .zero
     }
 
-    override var height: CGFloat {
+    override public var height: CGFloat {
         return coreViewBounds.height / 2
     }
 
-    override var isOpen: Bool {
+    override public var isOpen: Bool {
         return initialY != view.frame.origin.y
     }
 
@@ -43,7 +43,7 @@ public class BottomDrawerPlugin: DrawerPlugin {
         addTapGesture()
     }
 
-    override func bindEvents() {
+    override public func bindEvents() {
         super.bindEvents()
         bindCoreEvents()
         bindContainerEvents()
@@ -151,7 +151,7 @@ public class BottomDrawerPlugin: DrawerPlugin {
         core?.trigger(.didCloseDrawer)
     }
 
-    override func render() {
+    override public func render() {
         view.frame = CGRect(x: .zero, y: initialY, width: width, height: height)
         view.layoutIfNeeded()
         initialCenterY = view.center.y

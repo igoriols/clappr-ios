@@ -12,11 +12,11 @@ public class CustomBottomDrawerPlugin: BottomDrawerPlugin {
         view.addSubviewMatchingConstraints(label)
     }
 
-    override func bindEvents() {
+    override public func bindEvents() {
         super.bindEvents()
     }
 
-    override func render() {
+    override public func render() {
         super.render()
         label.text = "Hey! I'm a bottom drawer plugin!"
         label.textAlignment = .center

@@ -1,4 +1,4 @@
-class DrawerPlugin: OverlayPlugin {
+public class DrawerPlugin: OverlayPlugin {
 
     enum Position {
         case left(placeholder: CGFloat)
@@ -31,7 +31,7 @@ class DrawerPlugin: OverlayPlugin {
         return false
     }
 
-    open var position: Position {
+    var position: Position {
         return .none
     }
 
@@ -48,7 +48,7 @@ class DrawerPlugin: OverlayPlugin {
         view.alpha = 0
     }
 
-    override func bindEvents() {
+    override public func bindEvents() {
         bindCoreEvents()
         bindPlaybackEvents()
     }
