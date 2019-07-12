@@ -4,7 +4,7 @@ public class BottomDrawerPlugin: DrawerPlugin {
     }
 
     override var position: DrawerPlugin.Position {
-        return .bottom(placeholder: 30)
+        return .bottom(placeholder: 20)
     }
 
     override public var width: CGFloat {
