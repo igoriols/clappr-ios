@@ -10,6 +10,7 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
         }
     }
     @objc fileprivate(set) open var containers: [Container] = []
+    private var overlay: Overlay?
     fileprivate(set) open var plugins: [Plugin] = []
 
     @objc open weak var parentController: UIViewController?
@@ -68,6 +69,8 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
         Loader.shared.corePlugins.forEach { plugin in
             self.addPlugin(plugin.init(context: self))
         }
+
+        overlay = OverlayFactory.create(with: self)
     }
     
     public func gestureRecognizer(_: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -105,6 +108,14 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     open override func render() {
         containers.forEach(renderContainer)
         addToContainer()
+        renderOverlay()
+    }
+
+    private func renderOverlay() {
+        if let overlayView = overlay?.view {
+            view.addSubviewMatchingConstraints(overlayView)
+        }
+        overlay?.render()
     }
 
     #if os(tvOS)

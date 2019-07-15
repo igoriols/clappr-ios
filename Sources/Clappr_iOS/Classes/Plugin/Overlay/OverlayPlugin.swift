@@ -3,6 +3,10 @@ public class OverlayPlugin: UICorePlugin {
         return "OverlayPlugin"
     }
 
+    override public static var type: PluginType {
+        return .overlay
+    }
+
     enum Position {
         case left(placeholder: CGFloat)
         case right(placeholder: CGFloat)
