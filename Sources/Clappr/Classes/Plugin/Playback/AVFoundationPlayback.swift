@@ -209,7 +209,7 @@ open class AVFoundationPlayback: Playback {
     }
 
     private var shouldLoop: Bool {
-        return options.bool(kLoop, orElse: false)
+        return options.get(kLoop, orElse: false)
     }
 
     private var canStartAt: Bool {

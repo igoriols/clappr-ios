@@ -445,7 +445,7 @@ class MediaControlTests: QuickSpec {
                 context("when kMediaControlPluginsOrder is passed") {
                     it("renders the plugins following the kMediaControlPluginsOrder with all plugins specified in the option") {
                         let core = Core()
-                        core.options[kMediaControlPluginsOrder] = ["FullscreenButton", "TimeIndicatorPluginMock", "SecondPlugin", "FirstPlugin"]
+                        core.options = core.options.merging([kMediaControlPluginsOrder: ["FullscreenButton", "TimeIndicatorPluginMock", "SecondPlugin", "FirstPlugin"]])
                         let plugins = [FirstPlugin(context: core), SecondPlugin(context: core), TimeIndicatorPluginMock(context: core), FullscreenButton(context: core), ]
                         let mediaControl = MediaControl(context: core)
                         mediaControl.render()
@@ -461,7 +461,9 @@ class MediaControlTests: QuickSpec {
 
                     it("renders the plugins following the kMediaControlPluginsOrder with only two plugins specified in the option") {
                         let core = Core()
-                        core.options[kMediaControlPluginsOrder] = ["FullscreenButton", "TimeIndicatorPluginMock"]
+                        core.options = core.options.merging([
+                            kMediaControlPluginsOrder: ["FullscreenButton", "TimeIndicatorPluginMock"]
+                            ])
                         let plugins = [FirstPlugin(context: core), SecondPlugin(context: core), TimeIndicatorPluginMock(context: core), FullscreenButton(context: core), ]
                         let mediaControl = MediaControl(context: core)
                         mediaControl.render()

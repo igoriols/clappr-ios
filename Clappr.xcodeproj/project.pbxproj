@@ -277,7 +277,8 @@
 		CD57FCF122949BB300AB24CF /* SimpleContainerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57FCF022949BB300AB24CF /* SimpleContainerPlugin.swift */; };
 		CD57FCF222949BB300AB24CF /* SimpleContainerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57FCF022949BB300AB24CF /* SimpleContainerPlugin.swift */; };
 		CD57FCF322949BBB00AB24CF /* SimpleCorePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57FCEE22949B0F00AB24CF /* SimpleCorePlugin.swift */; };
-		CDCECC42228F28CB0012FD33 /* DecoratedPressAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCECC41228F28CB0012FD33 /* DecoratedPressAVPlayerViewController.swift */; };
+		CD5E292922DE741B00AD9740 /* OptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E292622DE736500AD9740 /* OptionsTest.swift */; };
+		CD5E292A22DE741C00AD9740 /* OptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E292622DE736500AD9740 /* OptionsTest.swift */; };
 		E7BEEB59217506C100B8F7FA /* TimeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB58217506C100B8F7FA /* TimeIndicator.swift */; };
 		E7BEEB5C21751EE600B8F7FA /* TimeIndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEEB5A21751D9600B8F7FA /* TimeIndicatorTests.swift */; };
 		E7C6E891219225B900A74149 /* SeekbarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C6E88F2192239500A74149 /* SeekbarViewTests.swift */; };
@@ -561,7 +562,7 @@
 		CD10D93C22C28D4C0096B035 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CD57FCEE22949B0F00AB24CF /* SimpleCorePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCorePlugin.swift; sourceTree = "<group>"; };
 		CD57FCF022949BB300AB24CF /* SimpleContainerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleContainerPlugin.swift; sourceTree = "<group>"; };
-		CDCECC41228F28CB0012FD33 /* DecoratedPressAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoratedPressAVPlayerViewController.swift; sourceTree = "<group>"; };
+		CD5E292622DE736500AD9740 /* OptionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTest.swift; sourceTree = "<group>"; };
 		D105480873032552EC2B57ED /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D8810057D2C05E1F7A2759D7 /* Clappr.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = Clappr.podspec; sourceTree = "<group>"; };
 		E7BEEB58217506C100B8F7FA /* TimeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicator.swift; sourceTree = "<group>"; };
@@ -1208,6 +1209,7 @@
 		C9EDF8432162C8DF00789E2F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CD5E292522DE735100AD9740 /* Base */,
 				C92F1C98216F8EE20059D860 /* Extensions */,
 				C9EDF8502162D06300789E2F /* Stubs */,
 				C9EDF84B2162CEE000789E2F /* Mocks */,
@@ -1294,6 +1296,14 @@
 				C9F6D7B52182650A0055A599 /* SeekbarView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CD5E292522DE735100AD9740 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CD5E292622DE736500AD9740 /* OptionsTest.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		D9A0DBC9D3DEA84C86432E68 /* Frameworks */ = {
@@ -1925,6 +1935,7 @@
 				32A7A298215EA49700296DE3 /* NoOpPlaybackTests.swift in Sources */,
 				FB0A223F21754CBD00D2180F /* PlayerTests.swift in Sources */,
 				C94D8CEE221B1E5400C7855D /* ContainerPluginTests.swift in Sources */,
+				CD5E292A22DE741C00AD9740 /* OptionsTest.swift in Sources */,
 				FB0A223C2175492E00D2180F /* Loader+Plugins.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1965,6 +1976,7 @@
 				9EED97062088E48700D1C84A /* AVPlayerStub.swift in Sources */,
 				96B4656B1BF6028A0025975A /* UIPluginTests.swift in Sources */,
 				C9EDF8562162D10B00789E2F /* ContainerStub.swift in Sources */,
+				CD5E292922DE741B00AD9740 /* OptionsTest.swift in Sources */,
 				9E5226791FBA207C008C4A15 /* NoOpPlaybackTests.swift in Sources */,
 				329624A82051ECFF0062AE32 /* MediaOptionTests.swift in Sources */,
 				48A29C03221DBE740004AD3B /* ContainerPluginStub.swift in Sources */,

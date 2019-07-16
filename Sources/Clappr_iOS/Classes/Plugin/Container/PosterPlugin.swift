@@ -77,8 +77,8 @@ open class PosterPlugin: UIContainerPlugin {
 
     private func bindContainerEvents() {
         guard let container = container else { return }
-        listenTo(container, eventName: Event.requestPosterUpdate.rawValue) { [weak self] info in self?.updatePoster(info) }
-        listenTo(container, eventName: Event.didUpdateOptions.rawValue) { [weak self] _ in self?.updatePoster(container.options) }
+        listenTo(container, eventName: Event.requestPosterUpdate.rawValue) { [weak self] info in self?.updatePoster(info?[kPosterUrl] as? String) }
+        listenTo(container, eventName: Event.didUpdateOptions.rawValue) { [weak self] _ in self?.updatePoster(container.options[kPosterUrl] as? String) }
     }
 
     @objc var isNoOpPlayback: Bool {
@@ -105,9 +105,9 @@ open class PosterPlugin: UIContainerPlugin {
         view.isHidden = false
     }
 
-    fileprivate func updatePoster(_ info: EventUserInfo) {
+    fileprivate func updatePoster(_ posterUrl: String?) {
         Logger.logInfo("Updating poster", scope: pluginName)
-        guard let posterUrl = info?[kPosterUrl] as? String else {
+        guard let posterUrl = posterUrl else {
             Logger.logWarn("Unable to update poster, no url was found", scope: pluginName)
             return
         }

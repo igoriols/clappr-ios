@@ -25,7 +25,10 @@ open class Container: UIObject {
         didSet {
             if self.playback != oldValue {
                 self.playback?.view.removeFromSuperview()
-                self.playback?.once(Event.playing.rawValue) { [weak self] _ in self?.options[kStartAt] = 0.0 }
+                self.playback?.once(Event.playing.rawValue) { [weak self] _ in
+                    guard let options = self?.options else { return }
+                    self?.options = options.merging([kStartAt: 0.0])
+                }
                 trigger(Event.didChangePlayback.rawValue)
             }
         }
@@ -48,8 +51,7 @@ open class Container: UIObject {
     @objc open func load(_ source: String, mimeType: String? = nil) {
         trigger(Event.willLoadSource.rawValue)
 
-        options[kSourceUrl] = source
-        options[kMimeType] = mimeType
+        options = options.merging([kSourceUrl: source, kMimeType: mimeType as Any])
 
         playback?.destroy()
 

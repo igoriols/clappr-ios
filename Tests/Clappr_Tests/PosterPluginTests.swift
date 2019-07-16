@@ -8,7 +8,7 @@ class PosterPluginTests: QuickSpec {
 
         describe(".PosterPlugin") {
             var container: Container!
-            let options = [
+            let options: Options = [
                 kSourceUrl: "http://globo.com/video.mp4",
                 kPosterUrl: "http://clappr.io/poster.png",
             ]

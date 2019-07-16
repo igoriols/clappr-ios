@@ -19,7 +19,7 @@ class CoreTests: QuickSpec {
             override func bindEvents() {  }
         }
 
-        let options = [kSourceUrl: "http//test.com"]
+        let options: Options = [kSourceUrl: "http//test.com"]
         var core: Core!
 
         beforeEach {
@@ -45,7 +45,7 @@ class CoreTests: QuickSpec {
                 }
 
                 it("save options passed on parameter") {
-                    let options = ["SomeOption": true]
+                    let options: Options = ["SomeOption": true]
                     let core = Core(options: options as Options)
 
                     expect(core.options["SomeOption"] as? Bool) == true
@@ -115,7 +115,7 @@ class CoreTests: QuickSpec {
                     }
 
                     it("start as embed video when `kFullscreenByApp: true`") {
-                        options[kFullscreenByApp] = true
+                        options = options.merging([kFullscreenByApp: true])
                         let core = Core(options: options)
                         core.parentView = UIView()
 
@@ -126,7 +126,7 @@ class CoreTests: QuickSpec {
                     }
 
                     it("start as fullscreen video when `kFullscreenByApp: false` and setFullscreen is called") {
-                        options[kFullscreenByApp] = false
+                        options = options.merging([kFullscreenByApp: false])
                         let player = Player(options: options)
 
                         self.playerSetup(player: player)

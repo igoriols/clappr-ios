@@ -1,5 +1,3 @@
-public typealias Options = [String: Any]
-
 public let kPosterUrl = "posterUrl"
 public let kSourceUrl = "sourceUrl"
 public let kMediaControl = "mediaControl"
@@ -37,5 +35,69 @@ struct OptionsUnboxer {
 
     var fullscreen: Bool {
         return options[kFullscreen] as? Bool ?? false
+    }
+}
+
+@objc
+public class Options: NSObject, ExpressibleByDictionaryLiteral {
+    public typealias Key = String
+    public typealias Value = Any
+
+    private let innerStorage: [String: Any]
+
+    required public init(dictionaryLiteral elements: (String, Any)...) {
+        innerStorage = Dictionary(uniqueKeysWithValues: elements)
+    }
+
+    public init(_ dictionary: [String: Any]) {
+        innerStorage = dictionary
+    }
+
+    public subscript (key: String) -> Any? {
+        return innerStorage[key]
+    }
+
+    public __consuming func merging(_ other: __owned [String: Any]) -> Options {
+        let newDictionary = innerStorage.merging(other, uniquingKeysWith: { _, second in second })
+        return Options(newDictionary)
+    }
+}
+
+extension Options {
+    var startAt: Double? {
+        switch self[kStartAt] {
+        case is Double:
+            return self[kStartAt] as? Double
+        case let startAt as Int:
+            return Double(startAt)
+        case let startAt as String:
+            return Double(startAt)
+        default:
+            return nil
+        }
+    }
+
+    func double(_ option: String, orElse alternative: Double) -> Double {
+        switch self[option] {
+        case let startAt as Double:
+            return startAt
+        case let startAt as Int:
+            return Double(startAt)
+        case let startAt as String:
+            return Double(startAt) ?? alternative
+        default:
+            return alternative
+        }
+    }
+
+    func bool(_ option: String, orElse alternative: Bool = false) -> Bool {
+        return get(option, orElse: alternative)
+    }
+
+    func get<T>(_ option: String, orElse alternative: T) -> T {
+        if let value = self[option] as? T {
+            return value
+        }
+        return alternative
     }
 }

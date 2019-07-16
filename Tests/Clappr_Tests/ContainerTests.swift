@@ -7,8 +7,8 @@ class ContainerTests: QuickSpec {
     override func spec() {
 
         struct Resource {
-            static let invalid = [kSourceUrl: "invalid"]
-            static let valid = [kSourceUrl: "http://clappr.com/video.mp4"]
+            static let invalid: Options = [kSourceUrl: "invalid"]
+            static let valid: Options = [kSourceUrl: "http://clappr.com/video.mp4"]
         }
 
         describe(".Container") {
@@ -84,7 +84,7 @@ class ContainerTests: QuickSpec {
                         Loader.shared.register(playbacks: [AVFoundationPlayback.self])
                         Loader.shared.register(plugins: [SpinnerPlugin.self])
 
-                        let options = ["aOption": "option"]
+                        let options: Options = ["aOption": "option"]
                         let container = ContainerFactory.create(with: options)
                         let option = container.options["aOption"] as! String
 
@@ -243,7 +243,7 @@ class ContainerTests: QuickSpec {
 
                 context("when pass a valid resource") {
 
-                    let source: String = Resource.valid[kSourceUrl]!
+                    let source: String = Resource.valid[kSourceUrl]! as! String
 
                     beforeEach {
                         Loader.shared.register(playbacks: [AVFoundationPlayback.self])
@@ -267,7 +267,7 @@ class ContainerTests: QuickSpec {
 
                 context("when pass a invalid resource") {
 
-                    let source: String = Resource.invalid[kSourceUrl]!
+                    let source: String = Resource.invalid[kSourceUrl]! as! String
 
                     beforeEach {
                         container = ContainerFactory.create(with: [:])

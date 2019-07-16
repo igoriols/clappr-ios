@@ -7,7 +7,7 @@ class PlaybackTests: QuickSpec {
     override func spec() {
         describe("Playback") {
             var playback: StubPlayback!
-            let options = [kSourceUrl: "http://globo.com/video.mp4"]
+            let options: Options = [kSourceUrl: "http://globo.com/video.mp4"]
 
             beforeEach {
                 playback = StubPlayback(options: options as Options)

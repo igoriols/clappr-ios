@@ -5,8 +5,8 @@ import Nimble
 class PlaybackFactoryTests: QuickSpec {
 
     override func spec() {
-        let optionsWithValidSource = [kSourceUrl: "http://test.com"]
-        let optionsWithInvalidSource = [kSourceUrl: "invalid"]
+        let optionsWithValidSource: Options = [kSourceUrl: "http://test.com"]
+        let optionsWithInvalidSource: Options = [kSourceUrl: "invalid"]
 
         beforeEach {
             Loader.shared.resetPlugins()

@@ -34,7 +34,7 @@ class AVFoundationPlaybackStateMachineEventsTests: QuickSpec {
             describe("#state machine events") {
                 context("when play, pause, seek, play and stop") {
                     it("triggers events following the state machine pattern") {
-                        let options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
+                        let options: Options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
                         let playback = AVFoundationPlayback(options: options)
                         let expectedEvents: [Event] = [
                             .ready, .willPlay, .stalling, .willPlay, .playing,
@@ -70,7 +70,7 @@ class AVFoundationPlaybackStateMachineEventsTests: QuickSpec {
 
                 context("when play and seek to end") {
                     it("triggers events following the state machine pattern") {
-                        let options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
+                        let options: Options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
                         let playback = AVFoundationPlayback(options: options)
                         let expectedEvents: [Event] = [
                             .ready, .willPlay, .stalling, .willPlay, .playing,
@@ -98,7 +98,7 @@ class AVFoundationPlaybackStateMachineEventsTests: QuickSpec {
 
                 context("when pause, play and stop") {
                     it("triggers events following the state machine pattern") {
-                        let options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
+                        let options: Options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
                         let playback = AVFoundationPlayback(options: options)
                         let expectedEvents: [Event] = [
                             .ready, .willPause, .didPause,
@@ -123,7 +123,7 @@ class AVFoundationPlaybackStateMachineEventsTests: QuickSpec {
 
                 context("when pause, play, pause and stop") {
                     it("triggers events following the state machine pattern") {
-                        let options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
+                        let options: Options = [kSourceUrl: "http://clappr.sample/master.m3u8"]
                         let playback = AVFoundationPlayback(options: options)
                         let expectedEvents: [Event] = [
                             .ready, .willPause, .didPause,
@@ -152,7 +152,7 @@ class AVFoundationPlaybackStateMachineEventsTests: QuickSpec {
             describe("#state machine error events") {
                 context("when play and an error occurs") {
                     it("triggers events following the state machine pattern") {
-                        let options = [kSourceUrl: "http://clappr8.sample/master.m3u8"]
+                        let options: Options = [kSourceUrl: "http://clappr8.sample/master.m3u8"]
                         let playback = AVFoundationPlayback(options: options)
                         let expectedEvents: [Event] = [
                             .ready, .willPlay, .stalling, .error, .didPause

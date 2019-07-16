@@ -35,7 +35,7 @@ open class Playback: UIObject, NamedType {
     }
 
     @objc open var startAt: TimeInterval {
-        return options.startAt ?? 0.0
+        return options.double(kStartAt, orElse: 0.0)
     }
 
     @objc open var duration: Double {
