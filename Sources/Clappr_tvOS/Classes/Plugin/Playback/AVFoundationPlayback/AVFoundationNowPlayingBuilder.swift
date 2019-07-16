@@ -61,7 +61,7 @@ struct AVFoundationNowPlayingBuilder {
     func getArtwork(with options: Options, completion: @escaping (AVMutableMetadataItem?) -> Void) {
         if let image = metadata[kMetaDataArtwork] as? UIImage {
             completion(getArtwork(with: image))
-        } else if let poster = options[kPosterUrl] as? String, let url = URL(string: poster) {
+        } else if let poster: String = options[kPosterUrl], let url = URL(string: poster) {
             let task = URLSession.shared.dataTask(with: url) { data, _, _ in
                 if let data = data, let image = UIImage(data: data) {
                     completion(self.getArtwork(with: image))

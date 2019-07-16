@@ -31,7 +31,7 @@ open class Playback: UIObject, NamedType {
     }
 
     @objc open var source: String? {
-        return options[kSourceUrl] as? String
+        return options[kSourceUrl]
     }
 
     @objc open var startAt: TimeInterval {

@@ -48,7 +48,7 @@ class CoreTests: QuickSpec {
                     let options: Options = ["SomeOption": true]
                     let core = Core(options: options as Options)
 
-                    expect(core.options["SomeOption"] as? Bool) == true
+                    expect(core.options["SomeOption"]) == true
                 }
 
                 it("activeContainer is not nil") {
@@ -488,7 +488,7 @@ class CoreTests: QuickSpec {
                     core.options = ["foo": "bar"]
 
                     core.containers.forEach { container in
-                        expect(container.options["foo"] as? String).to(equal("bar"))
+                        expect(container.options["foo"]) == "bar"
                     }
                 }
 

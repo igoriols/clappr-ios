@@ -35,7 +35,7 @@ open class NoOpPlayback: Playback {
     }
 
     fileprivate func labelText() -> String {
-        if let text = options[kPlaybackNotSupportedMessage] as? String {
+        if let text: String = options[kPlaybackNotSupportedMessage] {
             return text
         }
         return "Could not play video"

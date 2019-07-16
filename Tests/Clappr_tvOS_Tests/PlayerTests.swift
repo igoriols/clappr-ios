@@ -48,8 +48,9 @@ class PlayerTests: QuickSpec {
             describe("configure") {
                 it("changes Core options") {
                     player.configure(options: ["foo": "bar"])
-                    
-                    expect(player.core!.options["foo"] as? String).to(equal("bar"))
+
+                    let value: String? = player.core!.options["foo"]
+                    expect(value).to(equal("bar"))
                 }
             }
 
@@ -125,7 +126,7 @@ class PlayerTests: QuickSpec {
         }
         
         override class func canPlay(_ options: Options) -> Bool {
-            return options[kSourceUrl] as! String == PlayerTests.specialSource
+            return options[kSourceUrl] == PlayerTests.specialSource
         }
     }
 }

@@ -115,8 +115,10 @@ class MediaControlTests: QuickSpec {
 
                     let mediaControl = MediaControl(context: core)
 
+                    let mediaControlFoo: String? = mediaControl.options?["foo"]
+
                     expect(mediaControl.options).toNot(beNil())
-                    expect((mediaControl.options!["foo"] as! String)).to(equal("bar"))
+                    expect(mediaControlFoo).to(equal("bar"))
                 }
             }
 

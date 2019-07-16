@@ -26,7 +26,7 @@ open class Player: AVPlayerViewController {
     }
 
     open var isMediaControlEnabled: Bool {
-        return core?.options[kMediaControl] as? Bool ?? false
+        return core?.options[kMediaControl] ?? false
     }
 
     @objc private func willEnterForeground() {

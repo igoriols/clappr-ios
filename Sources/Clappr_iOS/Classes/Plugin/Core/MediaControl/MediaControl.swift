@@ -34,7 +34,7 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
 
     required public init(context: UIObject) {
         super.init(context: context)
-        alwaysVisible = (core?.options[kMediaControlAlwaysVisible] as? Bool) ?? false
+        alwaysVisible = core?.options[kMediaControlAlwaysVisible] ?? false
     }
 
     override open func bindEvents() {
@@ -221,7 +221,7 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
 
     private func sortPluginsIfNeeded(_ plugins: [MediaControlPlugin]) -> [MediaControlPlugin] {
-        if let pluginsOrder = core?.options[kMediaControlPluginsOrder] as? [String] {
+        if let pluginsOrder: [String] = core?.options[kMediaControlPluginsOrder] {
             var orderedPlugins = [MediaControlPlugin]()
             pluginsOrder.forEach { pluginName in
                 if let selectedPlugin = plugins.first(where: { $0.pluginName == pluginName }) {

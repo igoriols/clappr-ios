@@ -129,13 +129,13 @@ open class AVFoundationPlayback: Playback {
     open override class func canPlay(_ options: Options) -> Bool {
         var mimeType = ""
 
-        if let urlString = options[kSourceUrl] as? String,
+        if let urlString: String = options[kSourceUrl],
             let url = URL(string: urlString),
             let mimeTypeFromPath = mimeTypes[url.pathExtension] {
             mimeType = mimeTypeFromPath
         }
 
-        if let mimeTypeFromParameter = options[kMimeType] as? String {
+        if let mimeTypeFromParameter: String = options[kMimeType] {
             mimeType = mimeTypeFromParameter
         }
 
@@ -171,7 +171,7 @@ open class AVFoundationPlayback: Playback {
 
     public required init(options: Options) {
         super.init(options: options)
-        asset = createAsset(from: options[kSourceUrl] as? String)
+        asset = createAsset(from: options[kSourceUrl])
     }
 
     private func createAsset(from sourceUrl: String?) -> AVURLAsset? {
@@ -209,7 +209,7 @@ open class AVFoundationPlayback: Playback {
     }
 
     private var shouldLoop: Bool {
-        return options.get(kLoop, orElse: false)
+        return options[kLoop] ?? false
     }
 
     private var canStartAt: Bool {
@@ -503,11 +503,11 @@ open class AVFoundationPlayback: Playback {
     }
 
     private var defaultSubtitleLanguage: String? {
-        return options[kDefaultSubtitle] as? String
+        return options[kDefaultSubtitle]
     }
 
     private var defaultAudioSource: String? {
-        return options[kDefaultAudioSource] as? String
+        return options[kDefaultAudioSource]
     }
 
     private func defaultMediaOption(for source: [MediaOption], with language: String?) -> AVMediaSelectionOption? {
@@ -616,7 +616,7 @@ open class AVFoundationPlayback: Playback {
 // MARK: - DVR
 extension AVFoundationPlayback {
     open override var minDvrSize: Double {
-        return options[kMinDvrSize] as? Double ?? 60.0
+        return options[kMinDvrSize] ?? 60.0
     }
 
     open override var isDvrInUse: Bool {

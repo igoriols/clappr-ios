@@ -30,11 +30,11 @@ struct OptionsUnboxer {
     let options: Options
 
     var fullscreenControledByApp: Bool {
-        return options[kFullscreenByApp] as? Bool ?? false
+        return options[kFullscreenByApp] ?? false
     }
 
     var fullscreen: Bool {
-        return options[kFullscreen] as? Bool ?? false
+        return options[kFullscreen] ?? false
     }
 }
 
@@ -53,8 +53,8 @@ public class Options: NSObject, ExpressibleByDictionaryLiteral {
         innerStorage = dictionary
     }
 
-    public subscript (key: String) -> Any? {
-        return innerStorage[key]
+    public subscript<T> (key: String) -> T? {
+        return innerStorage[key] as? T
     }
 
     public __consuming func merging(_ other: __owned [String: Any]) -> Options {
@@ -64,21 +64,9 @@ public class Options: NSObject, ExpressibleByDictionaryLiteral {
 }
 
 extension Options {
-    var startAt: Double? {
-        switch self[kStartAt] {
-        case is Double:
-            return self[kStartAt] as? Double
-        case let startAt as Int:
-            return Double(startAt)
-        case let startAt as String:
-            return Double(startAt)
-        default:
-            return nil
-        }
-    }
-
-    func double(_ option: String, orElse alternative: Double) -> Double {
-        switch self[option] {
+     func double(_ option: String, orElse alternative: Double) -> Double {
+        guard let value: Any = self[option] else { return alternative }
+        switch value {
         case let startAt as Double:
             return startAt
         case let startAt as Int:
@@ -88,16 +76,5 @@ extension Options {
         default:
             return alternative
         }
-    }
-
-    func bool(_ option: String, orElse alternative: Bool = false) -> Bool {
-        return get(option, orElse: alternative)
-    }
-
-    func get<T>(_ option: String, orElse alternative: T) -> T {
-        if let value = self[option] as? T {
-            return value
-        }
-        return alternative
     }
 }

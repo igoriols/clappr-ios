@@ -9,7 +9,7 @@ class ViewController: UIViewController {
     @objc var options: Options = [:]
 
     @objc var fullscreenByApp: Bool {
-        return options[kFullscreenByApp] as? Bool ?? false
+        return options[kFullscreenByApp] ?? false
     }
 
     override func viewDidLoad() {

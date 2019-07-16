@@ -7,7 +7,7 @@ class AVFoundationNowPlayingService {
     var nowPlayingBuilder: AVFoundationNowPlayingBuilder?
 
     func setBuilder(with options: Options) {
-        let metaData = options[kMetaData] as? [String: Any] ?? [:]
+        let metaData: [String: Any] = options[kMetaData] ?? [:]
         nowPlayingBuilder = AVFoundationNowPlayingBuilder(metadata: metaData)
     }
 

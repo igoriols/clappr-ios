@@ -14,7 +14,7 @@ open class PosterPlugin: UIContainerPlugin {
 
     open override func render() {
         guard let container = container else { return }
-        if let urlString = container.options[kPosterUrl] as? String {
+        if let urlString: String = container.options[kPosterUrl] {
             setPosterImage(with: urlString)
         } else {
             view.isHidden = true
@@ -78,7 +78,7 @@ open class PosterPlugin: UIContainerPlugin {
     private func bindContainerEvents() {
         guard let container = container else { return }
         listenTo(container, eventName: Event.requestPosterUpdate.rawValue) { [weak self] info in self?.updatePoster(info?[kPosterUrl] as? String) }
-        listenTo(container, eventName: Event.didUpdateOptions.rawValue) { [weak self] _ in self?.updatePoster(container.options[kPosterUrl] as? String) }
+        listenTo(container, eventName: Event.didUpdateOptions.rawValue) { [weak self] _ in self?.updatePoster(container.options[kPosterUrl]) }
     }
 
     @objc var isNoOpPlayback: Bool {

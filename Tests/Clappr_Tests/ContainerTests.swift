@@ -86,7 +86,7 @@ class ContainerTests: QuickSpec {
 
                         let options: Options = ["aOption": "option"]
                         let container = ContainerFactory.create(with: options)
-                        let option = container.options["aOption"] as! String
+                        let option: String? = container.options["aOption"]
 
                         expect(option) == "option"
                     }
@@ -243,7 +243,7 @@ class ContainerTests: QuickSpec {
 
                 context("when pass a valid resource") {
 
-                    let source: String = Resource.valid[kSourceUrl]! as! String
+                    let source: String = Resource.valid[kSourceUrl]!
 
                     beforeEach {
                         Loader.shared.register(playbacks: [AVFoundationPlayback.self])
@@ -267,7 +267,7 @@ class ContainerTests: QuickSpec {
 
                 context("when pass a invalid resource") {
 
-                    let source: String = Resource.invalid[kSourceUrl]! as! String
+                    let source: String = Resource.invalid[kSourceUrl]!
 
                     beforeEach {
                         container = ContainerFactory.create(with: [:])
@@ -312,13 +312,13 @@ class ContainerTests: QuickSpec {
                     let options = [kSourceUrl: "someUrl", kStartAt: 15.0] as Options
                     let container = ContainerFactory.create(with: options)
 
-                    expect(container.options[kStartAt] as? TimeInterval) == 15.0
+                    expect(container.options[kStartAt]) == 15.0
                     expect(container.playback?.startAt) == 15.0
 
                     container.playback?.play()
                     container.load("http://clappr.com/video.mp4")
 
-                    expect(container.options[kStartAt] as? TimeInterval) == 0.0
+                    expect(container.options[kStartAt]) == 0.0
                     expect(container.playback?.startAt) == 0.0
                 }
             }
