@@ -57,7 +57,7 @@ Run `carthage update` to build the framework and drag the built `Clappr.framewor
 
 #### Create
 ```swift
-let options = [kSourceUrl : "http://clappr.io/highline.mp4"]
+let options: Options = [kSourceUrl : "http://clappr.io/highline.mp4"]
 let player = Player(options: options)
 ```
 
