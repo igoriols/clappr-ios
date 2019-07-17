@@ -61,7 +61,8 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
         super.init()
 
         view.backgroundColor = .black
-
+        view.addSubviewMatchingConstraints(overlayView)
+        
         addTapGestures()
         
         bindEventListeners()
@@ -100,7 +101,6 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     open func attach(to parentView: UIView, controller: UIViewController) {
         self.parentController = controller
         self.parentView = parentView
-        view.addSubviewMatchingConstraints(overlayView)
         trigger(Event.didAttachView)
     }
 
