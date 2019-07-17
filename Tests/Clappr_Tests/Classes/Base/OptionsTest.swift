@@ -53,29 +53,45 @@ class OptionsTests: QuickSpec {
         }
 
         describe("Options+Ext") {
-            describe("#double") {
+            describe("#double subscripot") {
                 it("returns a Double value if it's a Double") {
                     let options: Options = [kStartAt: Double(10)]
 
-                    expect(options.double(kStartAt, orElse: 0.0)).to(equal(10.0))
+                    let value: Double? = options[kStartAt]
+
+                    expect(value).to(equal(10.0))
                 }
 
                 it("returns a Double value if it's a Int") {
                     let options: Options = [kStartAt: Int(10)]
 
-                    expect(options.double(kStartAt, orElse: 0.0)).to(equal(10.0))
+                    let value: Double? = options[kStartAt]
+
+                    expect(value).to(equal(10.0))
                 }
 
                 it("returns a Double value if it's a String") {
-                    let options: Options = [kStartAt: String(10)]
+                    let options: Options = [kStartAt: "10"]
 
-                    expect(options.double(kStartAt, orElse: 0.0)).to(equal(10.0))
+                    let value: Double? = options[kStartAt]
+
+                    expect(value).to(equal(10.0))
                 }
 
-                it("returns alternative if it's not a String, Int or Double") {
+                it("returns nil if it's not a parsible String") {
+                    let options: Options = [kStartAt: "bar"]
+
+                    let value: Double? = options[kStartAt]
+
+                    expect(value).to(beNil())
+                }
+
+                it("returns nil if it's not a String, Int or Double") {
                     let options: Options = [kStartAt: []]
 
-                    expect(options.double(kStartAt, orElse: 0.)).to(equal(0.0))
+                    let value: Double? = options[kStartAt]
+
+                    expect(value).to(beNil())
                 }
             }
 

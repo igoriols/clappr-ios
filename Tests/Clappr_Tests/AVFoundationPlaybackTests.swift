@@ -113,7 +113,7 @@ class AVFoundationPlaybackTests: QuickSpec {
                     }
                     context("when minDvrOption has wrong type value") {
                         it("return default value") {
-                            let options: Options = [kMinDvrSize: 15]
+                            let options: Options = [kMinDvrSize: "not a valid number"]
                             let playback = AVFoundationPlayback(options: options)
 
                             expect(playback.minDvrSize).to(equal(60))

@@ -57,24 +57,14 @@ public class Options: NSObject, ExpressibleByDictionaryLiteral {
         return innerStorage[key] as? T
     }
 
+    public subscript (key: String) -> Double? {
+        if let value: Int = self[key] { return Double(value) }
+        if let value: String = self[key] { return Double(value) }
+        return innerStorage[key] as? Double
+    }
+
     public __consuming func merging(_ other: __owned [String: Any]) -> Options {
         let newDictionary = innerStorage.merging(other, uniquingKeysWith: { _, second in second })
         return Options(newDictionary)
-    }
-}
-
-extension Options {
-     func double(_ option: String, orElse alternative: Double) -> Double {
-        guard let value: Any = self[option] else { return alternative }
-        switch value {
-        case let startAt as Double:
-            return startAt
-        case let startAt as Int:
-            return Double(startAt)
-        case let startAt as String:
-            return Double(startAt) ?? alternative
-        default:
-            return alternative
-        }
     }
 }
