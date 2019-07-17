@@ -12,10 +12,6 @@ open class Loader {
         return plugins.filter { $0.type == .core }.map { return $0 }
     }
 
-    var overlayPlugins: [Plugin.Type] {
-        return plugins.filter { $0.type == .overlay }.map { return $0 }
-    }
-
     private init() { }
 
     open func register(plugins: [Plugin.Type]) {
