@@ -94,6 +94,7 @@
 		32E4021F1FF43534001C2096 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E4021D1FF43534001C2096 /* Nimble.framework */; };
 		32FC971B20B7257800ABA0C2 /* AVURLAssetWithCookiesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57937C561FB0DD0D000A239E /* AVURLAssetWithCookiesBuilder.swift */; };
 		32FC971C20B72C4200ABA0C2 /* AVURLAssetWithCookiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57937C581FB0DD27000A239E /* AVURLAssetWithCookiesTests.swift */; };
+		48137E0B22E09A3A0055FDFA /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AB0E872253CAB70096BCA4 /* PassthroughView.swift */; };
 		4820E6E522D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
 		4820E6E622D67058005CAED6 /* OverlayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E422D67058005CAED6 /* OverlayPlugin.swift */; };
 		4820E6E922D77342005CAED6 /* DrawerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E6E822D77342005CAED6 /* DrawerPlugin.swift */; };
@@ -1894,6 +1895,7 @@
 				32E401CE1FF42386001C2096 /* GradientView.swift in Sources */,
 				4820E6E622D67058005CAED6 /* OverlayPlugin.swift in Sources */,
 				32755E22215038CB0088724E /* Playback.swift in Sources */,
+				48137E0B22E09A3A0055FDFA /* PassthroughView.swift in Sources */,
 				488849B122845D97004B4AD1 /* AVAsset+Ext.swift in Sources */,
 				3251114721359BD8001FEEBA /* Core.swift in Sources */,
 				FC7785B8200523E400EC879F /* AVFoundationNowPlayingService.swift in Sources */,

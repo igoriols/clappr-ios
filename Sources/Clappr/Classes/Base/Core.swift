@@ -111,9 +111,7 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     }
 
     private func renderOverlayPlugins() {
-        for plugin in overlayPlugins {
-            render(plugin, on: overlayView)
-        }
+        overlayPlugins.forEach { render($0, on: overlayView) }
         view.bringSubviewToFront(overlayView)
     }
 
@@ -121,15 +119,19 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
         return plugins.compactMap { $0 as? OverlayPlugin }
     }
 
-    #if os(tvOS)
-    private func renderPlugins() {
-        plugins.forEach { plugin in
-            render(plugin)
-        }
-    }
-    #endif
-
     #if os(iOS)
+    private var corePlugins: [Plugin] {
+        return plugins.filter { isNotMediaControlPlugin($0) && isNotOverlayPlugin($0) }
+    }
+
+    private var mediaControlElements: [MediaControl.Element] {
+        return plugins.compactMap { $0 as? MediaControl.Element }
+    }
+
+    private var mediaControlPlugin: MediaControl? {
+        return plugins.first(where: { $0 is MediaControl }) as? MediaControl
+    }
+
     private func renderCoreAndMediaControlPlugins() {
         renderCorePlugins()
         renderMediaControlPlugins()
@@ -137,18 +139,11 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     }
 
     private func renderCorePlugins() {
-        plugins.filter { isNotMediaControlPlugin($0) && isNotOverlayPlugin($0) }.forEach { plugin in
-            render(plugin, on: view)
-        }
+        corePlugins.forEach { render($0, on: view) }
     }
 
     private func renderMediaControlPlugins() {
-        let mediaControl = plugins.first { $0 is MediaControl }
-
-        if let mediaControl = mediaControl as? MediaControl {
-            let mediaControlPlugins = plugins.compactMap { $0 as? MediaControl.Element }
-            mediaControl.renderPlugins(mediaControlPlugins)
-        }
+        mediaControlPlugin?.renderPlugins(mediaControlElements)
     }
 
     private func isNotMediaControlPlugin(_ plugin: Plugin) -> Bool {
@@ -157,6 +152,12 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
 
     private func isNotOverlayPlugin(_ plugin: Plugin) -> Bool {
         return !(plugin is OverlayPlugin)
+    }
+    #endif
+
+    #if os(tvOS)
+    private func renderPlugins() {
+        plugins.forEach { render($0, on: view) }
     }
     #endif
 

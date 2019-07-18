@@ -716,7 +716,7 @@ class CoreTests: QuickSpec {
 
                     core.render()
 
-                    expect(core.view.subviews.count).to(equal(2))
+                    expect(core.view.subviews.count).to(equal(3))
                     expect(core.view.subviews.first?.accessibilityIdentifier).to(equal("Container"))
                     expect(core.view.subviews[1].accessibilityIdentifier).to(beNil())
                 }
