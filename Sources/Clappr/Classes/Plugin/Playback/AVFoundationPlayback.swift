@@ -616,7 +616,7 @@ open class AVFoundationPlayback: Playback {
 // MARK: - DVR
 extension AVFoundationPlayback {
     open override var minDvrSize: Double {
-        return options[kMinDvrSize] ?? 60.0
+        return options.doubleValue(kMinDvrSize) ?? 60.0
     }
 
     open override var isDvrInUse: Bool {

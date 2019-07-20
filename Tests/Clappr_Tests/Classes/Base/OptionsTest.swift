@@ -82,14 +82,12 @@ class OptionsTests: QuickSpec {
                     expect(options.asDictionary().count).to(equal(1))
                 }
             }
-        }
 
-        describe("Options+Ext") {
-            describe("#double subscripot") {
+            describe("#doubleValue") {
                 it("returns a Double value if it's a Double") {
                     let options: Options = [kStartAt: Double(10)]
 
-                    let value: Double? = options[kStartAt]
+                    let value: Double? = options.doubleValue(kStartAt)
 
                     expect(value).to(equal(10.0))
                 }
@@ -97,7 +95,7 @@ class OptionsTests: QuickSpec {
                 it("returns a Double value if it's a Int") {
                     let options: Options = [kStartAt: Int(10)]
 
-                    let value: Double? = options[kStartAt]
+                    let value: Double? = options.doubleValue(kStartAt)
 
                     expect(value).to(equal(10.0))
                 }
@@ -105,7 +103,7 @@ class OptionsTests: QuickSpec {
                 it("returns a Double value if it's a String") {
                     let options: Options = [kStartAt: "10"]
 
-                    let value: Double? = options[kStartAt]
+                    let value: Double? = options.doubleValue(kStartAt)
 
                     expect(value).to(equal(10.0))
                 }
@@ -113,7 +111,7 @@ class OptionsTests: QuickSpec {
                 it("returns nil if it's not a parsible String") {
                     let options: Options = [kStartAt: "bar"]
 
-                    let value: Double? = options[kStartAt]
+                    let value: Double? = options.doubleValue(kStartAt)
 
                     expect(value).to(beNil())
                 }
@@ -121,7 +119,49 @@ class OptionsTests: QuickSpec {
                 it("returns nil if it's not a String, Int or Double") {
                     let options: Options = [kStartAt: []]
 
-                    let value: Double? = options[kStartAt]
+                    let value: Double? = options.doubleValue(kStartAt)
+
+                    expect(value).to(beNil())
+                }
+            }
+
+            describe("#int subscripot") {
+                it("returns a Int value if it's a Int") {
+                    let options: Options = ["intKey": Int(10)]
+
+                    let value: Int? = options.intValue("intKey")
+
+                    expect(value).to(equal(10))
+                }
+
+                it("returns a Int value if it's a Double") {
+                    let options: Options = ["intKey": Double(10.0)]
+
+                    let value: Int? = options.intValue("intKey")
+
+                    expect(value).to(equal(10))
+                }
+
+                it("returns a Int value if it's a String") {
+                    let options: Options = ["intKey": "10"]
+
+                    let value: Int? = options.intValue("intKey")
+
+                    expect(value).to(equal(10))
+                }
+
+                it("returns nil if it's not a parsible String") {
+                    let options: Options = ["intKey": "bar"]
+
+                    let value: Int? = options.intValue("intKey")
+
+                    expect(value).to(beNil())
+                }
+
+                it("returns nil if it's not a String, Int or Double") {
+                    let options: Options = ["intKey": []]
+
+                    let value: Int? = options.intValue("intKey")
 
                     expect(value).to(beNil())
                 }

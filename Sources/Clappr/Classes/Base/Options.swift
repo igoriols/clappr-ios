@@ -57,10 +57,16 @@ public class Options: NSObject, ExpressibleByDictionaryLiteral {
         return innerStorage[key] as? T
     }
 
-    public subscript (key: String) -> Double? {
+    public func doubleValue(_ key: String) -> Double? {
         if let value: Int = self[key] { return Double(value) }
         if let value: String = self[key] { return Double(value) }
         return innerStorage[key] as? Double
+    }
+
+    public func intValue(_ key: String) -> Int? {
+        if let value: Double = self[key] { return Int(value) }
+        if let value: String = self[key] { return Int(value) }
+        return innerStorage[key] as? Int
     }
 
     public __consuming func merging(_ other: __owned [String: Any]) -> Options {
