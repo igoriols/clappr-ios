@@ -38,7 +38,7 @@ struct OptionsUnboxer {
     }
 }
 
-@objc
+@objcMembers
 public class Options: NSObject, ExpressibleByDictionaryLiteral {
     public typealias Key = String
     public typealias Value = Any
