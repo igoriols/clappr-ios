@@ -50,6 +50,38 @@ class OptionsTests: QuickSpec {
                     expect(oldFizz).to(beNil())
                 }
             }
+
+            describe("asDictionary") {
+                it("converts into a dictionary") {
+                    let options: Options = ["foo": "bar"]
+
+                    let dict: [String: Any] = options.asDictionary()
+
+                    let value = dict["foo"] as? String
+
+                    expect(value).to(equal("bar"))
+                }
+
+                it("is a mutant dictionary if you want") {
+                    let options: Options = ["foo": "bar"]
+                    var dict = options.asDictionary()
+
+                    dict["fiz"] = "buz"
+
+                    let value = dict["fiz"] as? String
+
+                    expect(value).to(equal("buz"))
+                }
+
+                it("doesn't change original options") {
+                    let options: Options = ["foo": "bar"]
+                    var dict = options.asDictionary()
+
+                    dict["fiz"] = "buz"
+
+                    expect(options.asDictionary().count).to(equal(1))
+                }
+            }
         }
 
         describe("Options+Ext") {

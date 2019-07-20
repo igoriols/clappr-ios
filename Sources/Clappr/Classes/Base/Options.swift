@@ -67,4 +67,8 @@ public class Options: NSObject, ExpressibleByDictionaryLiteral {
         let newDictionary = innerStorage.merging(other, uniquingKeysWith: { _, second in second })
         return Options(newDictionary)
     }
+
+    public func asDictionary() -> [String: Any] {
+        return innerStorage
+    }
 }
