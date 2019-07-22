@@ -25,9 +25,9 @@ extension AVFoundationPlayback: AVPlayerViewControllerDelegate {
 
     public func playerViewController(_ playerViewController: AVPlayerViewController, willTransitionToVisibilityOfTransportBar visible: Bool, with coordinator: AVPlayerViewControllerAnimationCoordinator) {
         if #available(tvOS 11.0, *) {
-            coordinator.addCoordinatedAnimations({
-                self.handleTransitionBar(with: visible)
-            })
+            coordinator.addCoordinatedAnimations(nil) { [weak self] _ in
+                self?.handleTransitionBar(with: visible)
+            }
         } else {
             self.handleTransitionBar(with: visible)
         }
