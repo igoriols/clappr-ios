@@ -39,7 +39,9 @@ open class Container: UIObject {
 
         super.init()
 
+        self.sharedData.container = self
         view.backgroundColor = .clear
+
         view.accessibilityIdentifier = "Container"
     }
 
