@@ -341,11 +341,11 @@ class ContainerTests: QuickSpec {
 
                     beforeEach {
                         container = ContainerFactory.create(with: Resource.valid)
-                        container.sharedData["testKey"] = "testValue"
+                        container.sharedData.storeDictionary["testKey"] = "testValue"
                     }
 
                     it("retrieves stored value") {
-                        expect(container.sharedData["testKey"] as? String) == "testValue"
+                        expect(container.sharedData.storeDictionary["testKey"] as? String) == "testValue"
                     }
                 }
             }

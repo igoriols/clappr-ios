@@ -1,5 +1,3 @@
-public typealias SharedData = [String: Any]
-
 open class Core: UIObject, UIGestureRecognizerDelegate {
 
     @objc public let environment = Environment()
