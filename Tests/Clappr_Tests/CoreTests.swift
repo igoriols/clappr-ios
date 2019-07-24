@@ -312,6 +312,16 @@ class CoreTests: QuickSpec {
                         }
                     }
                 }
+                
+                describe("Core sharedData") {
+                    context("when stores a value on sharedData") {
+                        it("retrieves stored value") {
+                            core.sharedData.storeDictionary["testKey"] = "testValue"
+                            
+                            expect(core.sharedData.storeDictionary["testKey"] as? String) == "testValue"
+                        }
+                    }
+                }
 
                 describe("Forward events") {
 
