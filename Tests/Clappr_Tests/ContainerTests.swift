@@ -337,15 +337,8 @@ class ContainerTests: QuickSpec {
             }
 
             describe("Container sharedData") {
-                context("on a brand new instance") {
-                    it("starts empty") {
-                        container = ContainerFactory.create(with: Resource.valid)
-
-                        expect(container.sharedData).to(beEmpty())
-                    }
-                }
-
                 context("when stores a value on sharedData") {
+
                     beforeEach {
                         container = ContainerFactory.create(with: Resource.valid)
                         container.sharedData["testKey"] = "testValue"
