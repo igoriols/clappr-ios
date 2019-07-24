@@ -1,7 +1,6 @@
 open class Core: UIObject, UIGestureRecognizerDelegate {
 
     @objc public let environment = Environment()
-    @objc open var sharedData = SharedData()
 
     @objc open var options: Options {
         didSet {
