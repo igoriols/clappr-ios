@@ -10,6 +10,7 @@ open class Core: UIObject, UIGestureRecognizerDelegate {
     }
     @objc fileprivate(set) open var containers: [Container] = []
     fileprivate(set) open var plugins: [Plugin] = []
+    @objc open var sharedData = SharedData()
 
     @objc open weak var parentController: UIViewController?
     @objc open var parentView: UIView?
