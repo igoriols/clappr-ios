@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "1030"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "Clappr_Example.app"
-               BlueprintName = "Clappr_Example"
+               BlueprintIdentifier = "FC7785DD20052CB800EC879F"
+               BuildableName = "Clappr-tvOS-Example.app"
+               BlueprintName = "Clappr-tvOS-Example"
                ReferencedContainer = "container:Clappr.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,26 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9E692DFE1F9F898F006510BE"
-               BuildableName = "Clappr_UITests.xctest"
-               BlueprintName = "Clappr_UITests"
-               ReferencedContainer = "container:Clappr.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Clappr_Example.app"
-            BlueprintName = "Clappr_Example"
+            BlueprintIdentifier = "FC7785DD20052CB800EC879F"
+            BuildableName = "Clappr-tvOS-Example.app"
+            BlueprintName = "Clappr-tvOS-Example"
             ReferencedContainer = "container:Clappr.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Clappr_Example.app"
-            BlueprintName = "Clappr_Example"
+            BlueprintIdentifier = "FC7785DD20052CB800EC879F"
+            BuildableName = "Clappr-tvOS-Example.app"
+            BlueprintName = "Clappr-tvOS-Example"
             ReferencedContainer = "container:Clappr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Clappr_Example.app"
-            BlueprintName = "Clappr_Example"
+            BlueprintIdentifier = "FC7785DD20052CB800EC879F"
+            BuildableName = "Clappr-tvOS-Example.app"
+            BlueprintName = "Clappr-tvOS-Example"
             ReferencedContainer = "container:Clappr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

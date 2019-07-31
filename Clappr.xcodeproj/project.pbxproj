@@ -413,7 +413,7 @@
 		3283BF032024D52F00F2B826 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/tvOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
 		329624A72051ECFF0062AE32 /* MediaOptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaOptionTests.swift; sourceTree = "<group>"; };
 		32D18C8D20484CA10097653C /* SpinnerPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerPluginTests.swift; sourceTree = "<group>"; };
-		32E4020A1FF43262001C2096 /* Clappr_tvOS_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clappr_tvOS_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32E4020A1FF43262001C2096 /* ClapprTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ClapprTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32E4020E1FF43262001C2096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32E4021C1FF43533001C2096 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
 		32E4021D1FF43534001C2096 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
@@ -445,8 +445,8 @@
 		57937C581FB0DD27000A239E /* AVURLAssetWithCookiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVURLAssetWithCookiesTests.swift; sourceTree = "<group>"; };
 		57AB0E872253CAB70096BCA4 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		57F1354821836EE000111BC6 /* Array+appendOrReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+appendOrReplace.swift"; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* Clappr_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clappr_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACE51AFB9204008FA782 /* Clappr_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clappr_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Clappr-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clappr-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* ClapprTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ClapprTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3389F0416A5259ADD1C31F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		96036D651CBD88B60022CCCA /* PlaybackFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackFactoryTests.swift; sourceTree = "<group>"; };
@@ -514,7 +514,7 @@
 		9E26CFF22016149600AE92B7 /* FullscreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullscreenController.swift; path = Sources/Clappr_iOS/Classes/Base/FullScreen/FullscreenController.swift; sourceTree = SOURCE_ROOT; };
 		9E3AE5331FB330C000DFBBEB /* OptionsUnboxerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsUnboxerTests.swift; sourceTree = "<group>"; };
 		9E5226781FBA207C008C4A15 /* NoOpPlaybackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOpPlaybackTests.swift; sourceTree = "<group>"; };
-		9E692DFF1F9F898F006510BE /* Clappr_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clappr_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E692DFF1F9F898F006510BE /* ClapprUITests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ClapprUITests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E692E0E1F9F8A53006510BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E692E0F1F9F8A53006510BE /* PlayerViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewElements.swift; sourceTree = "<group>"; };
 		9E692E101F9F8A53006510BE /* DashboardViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewElements.swift; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 		FC7785B6200523E400EC879F /* AVFoundationPlayback+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVFoundationPlayback+tvOS.swift"; sourceTree = "<group>"; };
 		FC7785BB2005251800EC879F /* AVFoundationPlaybackNowPlayingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFoundationPlaybackNowPlayingServiceTests.swift; sourceTree = "<group>"; };
 		FC7785BC2005251800EC879F /* AVFoundationNowPlayingBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFoundationNowPlayingBuilderTests.swift; sourceTree = "<group>"; };
-		FC7785DE20052CB800EC879F /* Clappr_tvOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clappr_tvOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7785DE20052CB800EC879F /* Clappr-tvOS-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clappr-tvOS-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7785E020052CB800EC879F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC7785E220052CB800EC879F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC7785E520052CB800EC879F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -810,13 +810,13 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* Clappr_Example.app */,
-				607FACE51AFB9204008FA782 /* Clappr_Tests.xctest */,
+				607FACD01AFB9204008FA782 /* Clappr-Example.app */,
+				607FACE51AFB9204008FA782 /* ClapprTests-iOS.xctest */,
 				96D3627C1D41337600CCB866 /* Clappr.framework */,
-				9E692DFF1F9F898F006510BE /* Clappr_UITests.xctest */,
+				9E692DFF1F9F898F006510BE /* ClapprUITests-iOS.xctest */,
 				321781A81FED90CC00EDD678 /* Clappr.framework */,
-				32E4020A1FF43262001C2096 /* Clappr_tvOS_Tests.xctest */,
-				FC7785DE20052CB800EC879F /* Clappr_tvOS_Example.app */,
+				32E4020A1FF43262001C2096 /* ClapprTests-tvOS.xctest */,
+				FC7785DE20052CB800EC879F /* Clappr-tvOS-Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1440,9 +1440,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		321781A71FED90CC00EDD678 /* Clappr_tvOS */ = {
+		321781A71FED90CC00EDD678 /* Clappr-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 321781AF1FED90CC00EDD678 /* Build configuration list for PBXNativeTarget "Clappr_tvOS" */;
+			buildConfigurationList = 321781AF1FED90CC00EDD678 /* Build configuration list for PBXNativeTarget "Clappr-tvOS" */;
 			buildPhases = (
 				321781A31FED90CC00EDD678 /* Sources */,
 				321781A41FED90CC00EDD678 /* Frameworks */,
@@ -1454,14 +1454,14 @@
 			);
 			dependencies = (
 			);
-			name = Clappr_tvOS;
+			name = "Clappr-tvOS";
 			productName = "Clappr-tvOS";
 			productReference = 321781A81FED90CC00EDD678 /* Clappr.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		32E402091FF43262001C2096 /* Clappr_tvOS_Tests */ = {
+		32E402091FF43262001C2096 /* ClapprTests-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32E402141FF43263001C2096 /* Build configuration list for PBXNativeTarget "Clappr_tvOS_Tests" */;
+			buildConfigurationList = 32E402141FF43263001C2096 /* Build configuration list for PBXNativeTarget "ClapprTests-tvOS" */;
 			buildPhases = (
 				32E402061FF43262001C2096 /* Sources */,
 				32E402071FF43262001C2096 /* Frameworks */,
@@ -1473,14 +1473,14 @@
 			dependencies = (
 				32E402111FF43263001C2096 /* PBXTargetDependency */,
 			);
-			name = Clappr_tvOS_Tests;
+			name = "ClapprTests-tvOS";
 			productName = "Clappr-tvOS-Tests";
-			productReference = 32E4020A1FF43262001C2096 /* Clappr_tvOS_Tests.xctest */;
+			productReference = 32E4020A1FF43262001C2096 /* ClapprTests-tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		607FACCF1AFB9204008FA782 /* Clappr_Example */ = {
+		607FACCF1AFB9204008FA782 /* Clappr-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr-Example" */;
 			buildPhases = (
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
@@ -1492,14 +1492,14 @@
 			dependencies = (
 				96D362821D41337600CCB866 /* PBXTargetDependency */,
 			);
-			name = Clappr_Example;
+			name = "Clappr-Example";
 			productName = Clappr;
-			productReference = 607FACD01AFB9204008FA782 /* Clappr_Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Clappr-Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* Clappr_Tests */ = {
+		607FACE41AFB9204008FA782 /* ClapprTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr_Tests" */;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ClapprTests-iOS" */;
 			buildPhases = (
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
@@ -1511,14 +1511,14 @@
 			dependencies = (
 				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
 			);
-			name = Clappr_Tests;
+			name = "ClapprTests-iOS";
 			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* Clappr_Tests.xctest */;
+			productReference = 607FACE51AFB9204008FA782 /* ClapprTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		96D3627B1D41337600CCB866 /* Clappr */ = {
+		96D3627B1D41337600CCB866 /* Clappr-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96D362851D41337600CCB866 /* Build configuration list for PBXNativeTarget "Clappr" */;
+			buildConfigurationList = 96D362851D41337600CCB866 /* Build configuration list for PBXNativeTarget "Clappr-iOS" */;
 			buildPhases = (
 				96D362771D41337600CCB866 /* Sources */,
 				96D362781D41337600CCB866 /* Frameworks */,
@@ -1531,14 +1531,14 @@
 			);
 			dependencies = (
 			);
-			name = Clappr;
+			name = "Clappr-iOS";
 			productName = Clappr;
 			productReference = 96D3627C1D41337600CCB866 /* Clappr.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9E692DFE1F9F898F006510BE /* Clappr_UITests */ = {
+		9E692DFE1F9F898F006510BE /* ClapprUITests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E692E061F9F898F006510BE /* Build configuration list for PBXNativeTarget "Clappr_UITests" */;
+			buildConfigurationList = 9E692E061F9F898F006510BE /* Build configuration list for PBXNativeTarget "ClapprUITests-iOS" */;
 			buildPhases = (
 				9E692DFB1F9F898F006510BE /* Sources */,
 				9E692DFC1F9F898F006510BE /* Frameworks */,
@@ -1550,14 +1550,14 @@
 			dependencies = (
 				9E692E051F9F898F006510BE /* PBXTargetDependency */,
 			);
-			name = Clappr_UITests;
+			name = "ClapprUITests-iOS";
 			productName = Clappr_UITests;
-			productReference = 9E692DFF1F9F898F006510BE /* Clappr_UITests.xctest */;
+			productReference = 9E692DFF1F9F898F006510BE /* ClapprUITests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		FC7785DD20052CB800EC879F /* Clappr_tvOS_Example */ = {
+		FC7785DD20052CB800EC879F /* Clappr-tvOS-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC7785EC20052CB800EC879F /* Build configuration list for PBXNativeTarget "Clappr_tvOS_Example" */;
+			buildConfigurationList = FC7785EC20052CB800EC879F /* Build configuration list for PBXNativeTarget "Clappr-tvOS-Example" */;
 			buildPhases = (
 				FC7785DA20052CB800EC879F /* Sources */,
 				FC7785DB20052CB800EC879F /* Frameworks */,
@@ -1569,9 +1569,9 @@
 			dependencies = (
 				FC7785F020052EB300EC879F /* PBXTargetDependency */,
 			);
-			name = Clappr_tvOS_Example;
+			name = "Clappr-tvOS-Example";
 			productName = Clappr_tvOS_Example;
-			productReference = FC7785DE20052CB800EC879F /* Clappr_tvOS_Example.app */;
+			productReference = FC7785DE20052CB800EC879F /* Clappr-tvOS-Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1637,13 +1637,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				96D3627B1D41337600CCB866 /* Clappr */,
-				607FACE41AFB9204008FA782 /* Clappr_Tests */,
-				9E692DFE1F9F898F006510BE /* Clappr_UITests */,
-				607FACCF1AFB9204008FA782 /* Clappr_Example */,
-				321781A71FED90CC00EDD678 /* Clappr_tvOS */,
-				32E402091FF43262001C2096 /* Clappr_tvOS_Tests */,
-				FC7785DD20052CB800EC879F /* Clappr_tvOS_Example */,
+				96D3627B1D41337600CCB866 /* Clappr-iOS */,
+				607FACE41AFB9204008FA782 /* ClapprTests-iOS */,
+				9E692DFE1F9F898F006510BE /* ClapprUITests-iOS */,
+				607FACCF1AFB9204008FA782 /* Clappr-Example */,
+				321781A71FED90CC00EDD678 /* Clappr-tvOS */,
+				32E402091FF43262001C2096 /* ClapprTests-tvOS */,
+				FC7785DD20052CB800EC879F /* Clappr-tvOS-Example */,
 			);
 		};
 /* End PBXProject section */
@@ -2113,27 +2113,27 @@
 /* Begin PBXTargetDependency section */
 		32E402111FF43263001C2096 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 321781A71FED90CC00EDD678 /* Clappr_tvOS */;
+			target = 321781A71FED90CC00EDD678 /* Clappr-tvOS */;
 			targetProxy = 32E402101FF43263001C2096 /* PBXContainerItemProxy */;
 		};
 		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* Clappr_Example */;
+			target = 607FACCF1AFB9204008FA782 /* Clappr-Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
 		};
 		96D362821D41337600CCB866 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96D3627B1D41337600CCB866 /* Clappr */;
+			target = 96D3627B1D41337600CCB866 /* Clappr-iOS */;
 			targetProxy = 96D362811D41337600CCB866 /* PBXContainerItemProxy */;
 		};
 		9E692E051F9F898F006510BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* Clappr_Example */;
+			target = 607FACCF1AFB9204008FA782 /* Clappr-Example */;
 			targetProxy = 9E692E041F9F898F006510BE /* PBXContainerItemProxy */;
 		};
 		FC7785F020052EB300EC879F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 321781A71FED90CC00EDD678 /* Clappr_tvOS */;
+			target = 321781A71FED90CC00EDD678 /* Clappr-tvOS */;
 			targetProxy = FC7785EF20052EB300EC879F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2689,7 +2689,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		321781AF1FED90CC00EDD678 /* Build configuration list for PBXNativeTarget "Clappr_tvOS" */ = {
+		321781AF1FED90CC00EDD678 /* Build configuration list for PBXNativeTarget "Clappr-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				321781AD1FED90CC00EDD678 /* Debug */,
@@ -2698,7 +2698,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		32E402141FF43263001C2096 /* Build configuration list for PBXNativeTarget "Clappr_tvOS_Tests" */ = {
+		32E402141FF43263001C2096 /* Build configuration list for PBXNativeTarget "ClapprTests-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				32E402121FF43263001C2096 /* Debug */,
@@ -2716,7 +2716,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
@@ -2725,7 +2725,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Clappr_Tests" */ = {
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ClapprTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
@@ -2734,7 +2734,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96D362851D41337600CCB866 /* Build configuration list for PBXNativeTarget "Clappr" */ = {
+		96D362851D41337600CCB866 /* Build configuration list for PBXNativeTarget "Clappr-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96D362861D41337600CCB866 /* Debug */,
@@ -2743,7 +2743,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E692E061F9F898F006510BE /* Build configuration list for PBXNativeTarget "Clappr_UITests" */ = {
+		9E692E061F9F898F006510BE /* Build configuration list for PBXNativeTarget "ClapprUITests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E692E071F9F898F006510BE /* Debug */,
@@ -2752,7 +2752,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC7785EC20052CB800EC879F /* Build configuration list for PBXNativeTarget "Clappr_tvOS_Example" */ = {
+		FC7785EC20052CB800EC879F /* Build configuration list for PBXNativeTarget "Clappr-tvOS-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC7785EA20052CB800EC879F /* Debug */,
