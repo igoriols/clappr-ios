@@ -48,6 +48,7 @@ struct FullscreenByPlayer: FullscreenStateHandler {
         fullscreenController.modalPresentationStyle = .overFullScreen
         core.parentController?.present(fullscreenController, animated: false) {
             fullscreenController.view.addSubviewMatchingConstraints(self.core.view)
+            fullscreenController.view.addSubviewMatchingConstraints(self.core.overlayView)
             self.core.trigger(Event.didEnterFullscreen.rawValue)
         }
     }
@@ -62,6 +63,7 @@ struct FullscreenByPlayer: FullscreenStateHandler {
 
     private func handleExit() {
         core.parentView?.addSubviewMatchingConstraints(core.view)
+        core.parentView?.addSubviewMatchingConstraints(core.overlayView)
         core.fullscreenController?.dismiss(animated: false, completion: nil)
     }
 
