@@ -481,14 +481,15 @@ open class AVFoundationPlayback: Playback {
 
         let timeScale = Int32(NSEC_PER_SEC)
         let time = CMTimeMakeWithSeconds(timeInterval, preferredTimescale: timeScale)
+        let position = ["position": CMTimeGetSeconds(time)]
         let tolerance = CMTime(value: 0, timescale: timeScale)
 
-        trigger(.willSeek)
+        trigger(.willSeek, userInfo: position)
 
         player?.currentItem?.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance) { [weak self] success in
             if success {
-                self?.trigger(.didUpdatePosition, userInfo: ["position": CMTimeGetSeconds(time)])
-                self?.trigger(.didSeek)
+                self?.trigger(.didUpdatePosition, userInfo: position)
+                self?.trigger(.didSeek, userInfo: position)
                 if let triggerEvent = triggerEvent {
                     triggerEvent()
                 }
