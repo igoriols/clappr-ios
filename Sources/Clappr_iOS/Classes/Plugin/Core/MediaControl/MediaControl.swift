@@ -25,6 +25,9 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     private var currentlyShowing = false
     private var currentlyHiding = false
     private var showOnDrawerHide = true
+    
+    var isMediaControlShowing: Bool = false
+    var constrast: UIView = UIView()
 
     required public init(context: UIObject) {
         super.init(context: context)
@@ -140,29 +143,31 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
             return
         }
 
-        let duration = animated ? mediaControlShow : 0
+//        let duration = animated ? mediaControlShow : 0
 
         currentlyShowing = true
         currentlyHiding = false
 
         core?.trigger(Event.willShowMediaControl.rawValue)
 
-        if view.alpha == 0 {
-            view.isHidden = false
-        }
+        isMediaControlShowing = true
+//        if view.alpha == 0 {
+//            view.isHidden = false
+//        }
 
-        UIView.animate(
-            withDuration: duration,
-            animations: {
-                self.view.alpha = 1
-        },
-            completion: { [weak self] _ in
-                self?.view.isHidden = false
-                self?.currentlyShowing = false
-                self?.core?.trigger(Event.didShowMediaControl.rawValue)
+//        UIView.animate(
+//            withDuration: duration,
+//            animations: {
+//                self.view.alpha = 1
+//        },
+//            completion: { [weak self] _ in
+//                self?.view.isHidden = false
+//                self?.currentlyShowing = false
+        mediaControlView.backgroundColor = .clapprBlack60Color()
+                core?.trigger(Event.didShowMediaControl.rawValue)
                 completion?()
-            }
-        )
+//            }
+//        )
     }
 
     func hide(animated: Bool = false, completion: (() -> Void)? = nil) {
@@ -177,20 +182,23 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
             currentlyShowing = false
             currentlyHiding = true
 
-            let duration = animated ? mediaControlHide : 0
+            isMediaControlShowing = false
+            
+//            let duration = animated ? mediaControlHide : 0
 
-            UIView.animate(
-                withDuration: duration,
-                animations: {
-                    self.view.alpha = 0
-            },
-                completion: { [weak self] _ in
-                    self?.currentlyHiding = false
-                    self?.view.isHidden = true
-                    self?.core?.trigger(Event.didHideMediaControl.rawValue)
+//            UIView.animate(
+//                withDuration: duration,
+//                animations: {
+//                    self.view.alpha = 0
+//            },
+//                completion: { [weak self] _ in
+//                    self?.currentlyHiding = false
+//                    self?.view.isHidden = true
+            mediaControlView.backgroundColor = .clear
+                    self.core?.trigger(Event.didHideMediaControl.rawValue)
                     completion?()
-                }
-            )
+//                }
+//            )
         }
     }
 
@@ -210,10 +218,13 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
 
     @objc func tapped() {
-        hideAndStopTimer()
+//        hideAndStopTimer()
+        toggleVisibility()
     }
     
     override open func render() {
+        view.addSubview(constrast)
+        constrast.bindFrameToSuperviewBounds()
         view.addSubview(mediaControlView)
         mediaControlView.bindFrameToSuperviewBounds()
         
@@ -222,10 +233,12 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         view.addGestureRecognizer(tapGesture)
         self.tapGesture = tapGesture
         
-        view.isHidden = true
-        view.backgroundColor = UIColor.clear
+        isMediaControlShowing = false
+//        view.isHidden = true
+//        view.backgroundColor = .red
+        constrast.backgroundColor = .clapprBlack60Color()
         if let constrastView = mediaControlView.contrastView {
-            constrastView.backgroundColor = UIColor.clapprBlack60Color()
+            constrastView.backgroundColor = .clear
         }
 
         showIfAlwaysVisible()
@@ -272,9 +285,14 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
 
     fileprivate func toggleVisibility() {
-        if showControls {
-            show(animated: true) { [weak self] in
-                self?.disappearAfterSomeTime(self?.longTimeToHideMediaControl)
+        print("#isMediaControlShowing: \(isMediaControlShowing)")
+        if isMediaControlShowing {
+            hideAndStopTimer()
+        } else {
+            if showControls {
+                show(animated: true) { [weak self] in
+                    self?.disappearAfterSomeTime(self?.longTimeToHideMediaControl)
+                }
             }
         }
     }

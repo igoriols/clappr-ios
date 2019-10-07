@@ -197,15 +197,15 @@ open class Player: BaseObject {
     open class func register(plugins: [Plugin.Type]) {
         if !hasAlreadyRegisteredPlugins {
             let builtInPlugins: [Plugin.Type] = [
-                MediaControl.self,
-                PosterPlugin.self,
-                SpinnerPlugin.self,
-                PlayButton.self,
-                TimeIndicator.self,
-                FullscreenButton.self,
-                Seekbar.self,
-                QuickSeekCorePlugin.self,
-                QuickSeekMediaControlPlugin.self]
+                MediaControl.self,]
+//                PosterPlugin.self,
+//                SpinnerPlugin.self,
+//                PlayButton.self,
+//                TimeIndicator.self,
+//                FullscreenButton.self,
+//                Seekbar.self,
+//                QuickSeekCorePlugin.self,
+//                QuickSeekMediaControlPlugin.self]
 
             Loader.shared.register(plugins: builtInPlugins)
             hasAlreadyRegisteredPlugins = true
