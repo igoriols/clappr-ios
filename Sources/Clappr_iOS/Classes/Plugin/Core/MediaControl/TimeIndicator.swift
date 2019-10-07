@@ -73,6 +73,13 @@ open class TimeIndicator: MediaControl.Element {
         if let core = self.core {
             listenTo(core, eventName: Event.didEnterFullscreen.rawValue) { [weak self] _ in self?.updateLayoutConstants() }
             listenTo(core, eventName: Event.didExitFullscreen.rawValue) { [weak self] _ in self?.updateLayoutConstants() }
+
+            listenTo(core, eventName: "showElements") { [weak self] _ in
+                self?.view.isHidden = false
+            }
+            listenTo(core, eventName: "hideElements") { [weak self] _ in
+                self?.view.isHidden = true
+            }
         }
     }
 
@@ -95,6 +102,8 @@ open class TimeIndicator: MediaControl.Element {
         separatorLabel = UILabel()
         durationTimeLabel = UILabel()
         updateLayoutConstants()
+
+        view.isHidden = true
     }
 
     open var marginBottom: CGFloat = 0 {

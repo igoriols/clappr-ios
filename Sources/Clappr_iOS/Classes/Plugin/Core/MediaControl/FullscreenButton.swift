@@ -46,10 +46,17 @@ open class FullscreenButton: MediaControl.Element {
                  eventName: Event.didEnterFullscreen.rawValue) { [weak self] (_: EventUserInfo) in self?.isOnFullscreen = true }
         listenTo(core,
                  eventName: Event.didExitFullscreen.rawValue) { [weak self] (_: EventUserInfo) in self?.isOnFullscreen = false }
+        listenTo(core, eventName: "showElements") { [weak self] _ in
+            self?.view.isHidden = false
+        }
+        listenTo(core, eventName: "hideElements") { [weak self] _ in
+            self?.view.isHidden = true
+        }
     }
     
     override open func render() {
         setupButton()
+        view.isHidden = true
     }
     
     private func setupButton() {

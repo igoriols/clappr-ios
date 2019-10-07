@@ -26,6 +26,14 @@ class Seekbar: MediaControl.Element {
     override public func bindEvents() {
         bindPlaybackEvents()
         bindOfflinePlaybackEvents()
+        if let core = core {
+            listenTo(core, eventName: "showElements") { [weak self] _ in
+                self?.view.isHidden = false
+            }
+            listenTo(core, eventName: "hideElements") { [weak self] _ in
+                self?.view.isHidden = true
+            }
+        }
     }
 
     fileprivate func setSeekbarViewLive() {
@@ -78,6 +86,7 @@ class Seekbar: MediaControl.Element {
         containerView = UIStackView()
         containerView.addArrangedSubview(seekbarView)
         seekbarView.delegate = self
+        view.isHidden = true
     }
 
     private func setupHeightSize() {

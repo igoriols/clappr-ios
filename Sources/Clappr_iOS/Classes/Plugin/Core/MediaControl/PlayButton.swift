@@ -26,6 +26,15 @@ open class PlayButton: MediaControl.Element {
 
     override open func bindEvents() {
         bindPlaybackEvents()
+
+        if let core = core {
+            listenTo(core, eventName: "showElements") { [weak self] _ in
+                self?.show()
+            }
+            listenTo(core, eventName: "hideElements") { [weak self] _ in
+                self?.hide()
+            }
+        }
     }
 
     func bindPlaybackEvents() {
@@ -42,12 +51,14 @@ open class PlayButton: MediaControl.Element {
             view.heightAnchor.constraint(equalTo: superview.heightAnchor, multiplier: 0.6).isActive = true
         }
 
+        view.isHidden = true    
+
         button = UIButton(type: .custom)
         button.accessibilityIdentifier = "PlayPauseButton"
     }
 
     open func onPlay() {
-        show()
+//        show()
         changeIcon()
     }
 
@@ -72,6 +83,9 @@ open class PlayButton: MediaControl.Element {
         if playback.state == .playing {
             activePlayback?.pause()
         } else if playback.state == .paused {
+            activePlayback?.play()
+        } else if playback.state == .idle {
+            activePlayback?.seek(0)
             activePlayback?.play()
         }
     }

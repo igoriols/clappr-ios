@@ -27,7 +27,7 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     private var showOnDrawerHide = true
     
     var isMediaControlShowing: Bool = false
-    var constrast: UIView = UIView()
+    var constrastView: UIView = UIView()
 
     required public init(context: UIObject) {
         super.init(context: context)
@@ -136,70 +136,35 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         }
     }
 
-
     func show(animated: Bool = false, completion: (() -> Void)? = nil) {
-        if currentlyShowing {
-            completion?()
-            return
-        }
-
-//        let duration = animated ? mediaControlShow : 0
-
-        currentlyShowing = true
-        currentlyHiding = false
-
         core?.trigger(Event.willShowMediaControl.rawValue)
 
         isMediaControlShowing = true
-//        if view.alpha == 0 {
-//            view.isHidden = false
-//        }
+        let duration = animated ? mediaControlHide : 0
 
-//        UIView.animate(
-//            withDuration: duration,
-//            animations: {
-//                self.view.alpha = 1
-//        },
-//            completion: { [weak self] _ in
-//                self?.view.isHidden = false
-//                self?.currentlyShowing = false
-        mediaControlView.backgroundColor = .clapprBlack60Color()
-                core?.trigger(Event.didShowMediaControl.rawValue)
-                completion?()
-//            }
-//        )
+        UIView.animate(withDuration: duration) {
+            self.constrastView.isHidden = false
+        }
+
+        core?.trigger("showElements")
+        core?.trigger(Event.didShowMediaControl.rawValue)
+        completion?()
     }
 
     func hide(animated: Bool = false, completion: (() -> Void)? = nil) {
-        if currentlyHiding {
-            completion?()
-            return
+        core?.trigger(Event.willHideMediaControl.rawValue)
+
+        isMediaControlShowing = false
+
+        let duration = animated ? mediaControlShow : 0
+
+        UIView.animate(withDuration: duration) {
+            self.constrastView.isHidden = true
         }
 
-        if !alwaysVisible {
-            core?.trigger(Event.willHideMediaControl.rawValue)
-
-            currentlyShowing = false
-            currentlyHiding = true
-
-            isMediaControlShowing = false
-            
-//            let duration = animated ? mediaControlHide : 0
-
-//            UIView.animate(
-//                withDuration: duration,
-//                animations: {
-//                    self.view.alpha = 0
-//            },
-//                completion: { [weak self] _ in
-//                    self?.currentlyHiding = false
-//                    self?.view.isHidden = true
-            mediaControlView.backgroundColor = .clear
-                    self.core?.trigger(Event.didHideMediaControl.rawValue)
-                    completion?()
-//                }
-//            )
-        }
+        core?.trigger("hideElements")
+        core?.trigger(Event.didHideMediaControl.rawValue)
+        completion?()
     }
 
     public func disappearAfterSomeTime(_ duration: TimeInterval? = nil) {
@@ -223,41 +188,24 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
     }
     
     override open func render() {
-        view.addSubview(constrast)
-        constrast.bindFrameToSuperviewBounds()
+        view.addSubview(constrastView)
+        constrastView.bindFrameToSuperviewBounds()
+        constrastView.isHidden = true
+
         view.addSubview(mediaControlView)
         mediaControlView.bindFrameToSuperviewBounds()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        tapGesture.delegate = self
-        view.addGestureRecognizer(tapGesture)
-        self.tapGesture = tapGesture
+        addTapGesture()
         
         isMediaControlShowing = false
-//        view.isHidden = true
-//        view.backgroundColor = .red
-        constrast.backgroundColor = .clapprBlack60Color()
+
+        view.backgroundColor = .clear
+        constrastView.backgroundColor = .clapprBlack60Color()
         if let constrastView = mediaControlView.contrastView {
             constrastView.backgroundColor = .clear
         }
 
-        showIfAlwaysVisible()
         view.bindFrameToSuperviewBounds()
-    }
-
-    func render(_ elements: [MediaControl.Element]) {
-        let orderedElements = sortElementsIfNeeded(elements)
-        orderedElements.forEach { element in
-            mediaControlView.addSubview(element.view, in: element.panel, at: element.position)
-
-            do {
-                try ObjC.catchException {
-                    element.render()
-                }
-            } catch {
-                Logger.logError("\((element as Plugin).pluginName) crashed during render (\(error.localizedDescription))", scope: "MediaControl")
-            }
-        }
     }
 
     private func sortElementsIfNeeded(_ elements: [MediaControl.Element]) -> [MediaControl.Element] {
@@ -278,26 +226,35 @@ open class MediaControl: UICorePlugin, UIGestureRecognizerDelegate {
         return elements
     }
 
-    private func showIfAlwaysVisible() {
-        if alwaysVisible {
-            show()
-        }
-    }
+    func render(_ elements: [MediaControl.Element]) {
+        let orderedElements = sortElementsIfNeeded(elements)
+        orderedElements.forEach { element in
+            mediaControlView.addSubview(element.view, in: element.panel, at: element.position)
 
-    fileprivate func toggleVisibility() {
-        print("#isMediaControlShowing: \(isMediaControlShowing)")
-        if isMediaControlShowing {
-            hideAndStopTimer()
-        } else {
-            if showControls {
-                show(animated: true) { [weak self] in
-                    self?.disappearAfterSomeTime(self?.longTimeToHideMediaControl)
+            do {
+                try ObjC.catchException {
+                    element.render()
                 }
+            } catch {
+                Logger.logError("\((element as Plugin).pluginName) crashed during render (\(error.localizedDescription))", scope: "MediaControl")
             }
         }
     }
 
-    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return true
+    private func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
+        self.tapGesture = tapGesture
+    }
+
+    fileprivate func toggleVisibility() {
+        if isMediaControlShowing {
+            hideAndStopTimer()
+        } else {
+            show(animated: true) { [weak self] in
+                self?.disappearAfterSomeTime(self?.longTimeToHideMediaControl)
+            }
+        }
     }
 }
