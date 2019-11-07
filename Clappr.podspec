@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
     "Cristian Madrid" => "cristianmadridd@gmail.com",
   }
 
-  s.source           = { :git => "https://github.com/clappr/clappr-ios.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/igoriols/clappr-ios.git", :tag => s.version.to_s }
 
   s.requires_arc = true
   s.ios.resources = 'Sources/Clappr_iOS/Resources/*.{xib,ttf,png,xcassets}'
